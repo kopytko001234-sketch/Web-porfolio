@@ -1,11 +1,11 @@
 /* ==========================================================================
-   1. ПЕРЕМЕННЫЕ И БАЗОВЫЕ СТИЛИ
+   1. ПЕРЕМЕННЫЕ И МИНИМАЛИСТИЧНЫЙ ТЕМНЫЙ ФОН
    ========================================================================== */
 :root {
-    --bg-color: #000000;
-    /* Полностью прозрачный фон с ультра-тонкой каймой для идеального наложения на линии фона */
+    /* Фирменная ультра-темная палитра без использования изображений */
+    --bg-color: #080a0f; 
     --card-bg: rgba(255, 255, 255, 0.01); 
-    --card-border: rgba(255, 255, 255, 0.06);
+    --card-border: rgba(255, 255, 255, 0.05);
     --accent-color: #5865F2; 
     --gh-active-orange: #f78166; 
     --text-main: #c9d1d9;
@@ -22,11 +22,9 @@
 
 body {
     background-color: var(--bg-color);
-    background-image: url('images/903c06ca05b95683c7646bf18a2914e5.jpg');
+    /* Мягкий минималистичный градиент для создания глубины на темном экране */
+    background-image: radial-gradient(circle at 50% -20%, #131924 0%, #080a0f 70%);
     background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     color: var(--text-main);
     font-family: var(--font);
     overflow-x: hidden;
@@ -51,7 +49,7 @@ body {
 }
 
 /* ==========================================================================
-   ПРОЗРАЧНАЯ СТЕЛЯННАЯ ШАПКА GITHUB (МАТОВОЕ СТЕКЛО)
+   ПОЛНОСТЬЮ ПРОЗРАЧНАЯ ВЕРХНЯЯ ПАНЕЛЬ (HEADER)
    ========================================================================== */
 .gh-header {
     position: fixed;
@@ -59,11 +57,13 @@ body {
     left: 0;
     width: 100%;
     height: 56px;
-    /* Полупрозрачный темный тон, сквозь который благородно просвечивают линии фона */
-    background-color: rgba(13, 17, 23, 0.7) !important; 
-    border-bottom: 1px solid rgba(33, 38, 45, 0.6);
-    backdrop-filter: blur(12px); /* Размытие заднего плана под шапкой */
-    -webkit-backdrop-filter: blur(12px);
+    /* Абсолютно прозрачный фон */
+    background-color: transparent !important; 
+    /* Едва заметная нижняя разделительная кайма */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04); 
+    /* Эффект легкого размытия контента, который уходит наверх при скролле */
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
     z-index: 99999; 
 }
 
@@ -103,7 +103,7 @@ body {
 }
 
 .gh-nav-item:not(.brand):hover {
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.05);
     border-radius: 6px;
 }
 
@@ -138,7 +138,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #000000;
+    background-color: #080a0f;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -184,10 +184,10 @@ body {
     border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
     animation: morph 8s infinite ease-in-out, spin 15s infinite linear;
     cursor: pointer;
-    box-shadow: 0 0 50px rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.02);
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease;
 }
-.floating-interactive:hover { transform: scale(1.08) rotate(15deg); background: linear-gradient(45deg, var(--accent-color), #ffffff); box-shadow: 0 0 50px rgba(88, 101, 242, 0.4); }
+.floating-interactive:hover { transform: scale(1.08) rotate(15deg); background: linear-gradient(45deg, var(--accent-color), #ffffff); box-shadow: 0 0 50px rgba(88, 101, 242, 0.3); }
 
 @keyframes morph { 0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 50% { border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%; } 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } }
 @keyframes spin { 100% { transform: rotate(360deg); } }
@@ -195,7 +195,7 @@ body {
 /* ==========================================================================
    4. СОДЕРЖАНИЕ И ПРОЗРАЧНЫЕ ТАЮЩИЕ КАРТОЧКИ
    ========================================================================== */
-.navigation-tabs { border-top: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 0; margin: 40px 0; backdrop-filter: blur(5px); }
+.navigation-tabs { border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 25px 0; margin: 40px 0; }
 .nav-links { list-style: none; display: flex; gap: 35px; }
 .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s ease; position: relative; padding-bottom: 5px; }
 .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--accent-color); transition: width 0.3s ease; }
@@ -207,30 +207,23 @@ body {
 .section-title::before { content: '//'; color: var(--accent-color); font-family: monospace; font-weight: 700; }
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
 
-/* Карточки стали прозрачными, с изящными едва заметными тающими краями */
+/* Полностью прозрачные карточки с тающими ультра-тонкими краями */
 .card, .contact-box {
     background-color: var(--card-bg); 
     border: 1px solid var(--card-border); 
     border-radius: 14px; 
     padding: 30px; 
-    
-    /* Эффект матового стекла размывает проходящие сзади линии фона */
-    backdrop-filter: blur(6px); 
-    -webkit-backdrop-filter: blur(6px);
-    
-    /* Плавное таяние тени и краев при наведении */
     transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease, background-color 0.3s ease;
 }
 
-/* Наведение заставляет края карточки слегка "проявиться" неоновым свечением */
 .card:hover, .contact-box:hover { 
-    transform: translateY(-6px); 
-    background-color: rgba(255, 255, 255, 0.03);
-    border-color: rgba(88, 101, 242, 0.3); 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+    transform: translateY(-5px); 
+    background-color: rgba(255, 255, 255, 0.02);
+    border-color: rgba(255, 255, 255, 0.15); 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); 
 }
 
-.card tag { display: inline-block; background: rgba(88, 101, 242, 0.15); color: #8c96ff; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+.card tag { display: inline-block; background: rgba(88, 101, 242, 0.12); color: #8c96ff; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
 .card h3 { font-size: 1.35rem; margin-bottom: 12px; color: #ffffff;}
 .card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
 
