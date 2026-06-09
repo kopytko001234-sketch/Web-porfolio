@@ -3,22 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Портфолио | Modern Dark Minimalism</title>
+    <title>Портфолио | Главная</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="loader">
+    <div id="loader">
         <div class="loader-content">
             <div class="wave-text">
-                <span>З</span>
-                <span>а</span>
-                <span>г</span>
-                <span>р</span>
-                <span>у</span>
-                <span>з</span>
-                <span>к</span>
-                <span>а</span>
+                <span>З</span><span>а</span><span>г</span><span>р</span><span>у</span><span>з</span><span>к</span><span>а</span>
             </div>
             <div class="wave-dots">
                 <span class="loader-pill"></span>
@@ -28,19 +21,39 @@
         </div>
     </div>
 
+    <header class="gh-header">
+        <div class="gh-container">
+            <div class="gh-nav">
+                <div class="gh-nav-item brand">
+                    <svg class="gh-icon" viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M10.561 8.073a.75.75 0 1 1-1.122-1.001 2.22 2.22 0 0 0 .561-1.447c0-1.176-.856-2.125-2-2.125s-2 .949-2 2.125c0 .554.214 1.057.561 1.447a.75.75 0 1 1-1.122 1.001A3.72 3.72 0 0 1 4.5 5.625C4.5 3.632 6.058 2 8 2s3.5 1.632 3.5 3.625c0 .927-.348 1.771-.939 2.448Z"></path><path fill="currentColor" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path></svg>
+                    Мое портфолио
+                </div>
+                
+                <a href="#projects-nav" class="gh-nav-item active">
+                    <svg class="gh-icon" viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 1 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5 7V1.5h-8a1 1 0 0 0-1 1v8.5c0 .193.055.373.15.526A2.487 2.487 0 0 1 4.5 10h8ZM4.5 1.5h7v1h-7v-1Zm0 2.5h7v1h-7v-1Zm0 2.5h5v1h-5v-1Z"></path></svg>
+                    Мои проекты
+                </a>
+                
+                <a href="contacts.html" class="gh-nav-item">
+                    <svg class="gh-icon" viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16ZM4 5v5a4 4 0 0 0 7.172 2.427l-1.06-1.06A2.5 2.5 0 0 1 5.5 10V5.78l3.15 3.15a1.25 1.25 0 0 0 1.768 0l2.333-2.333a3.5 3.5 0 0 0-4.95-4.95l-3 3A3.5 3.5 0 0 0 4 10Zm5.44-3.56a2 2 0 0 1 2.828 2.828l-2.334 2.334L6.78 3.44l2.334-2.334L9.44 1.44Z"></path></svg>
+                    Связь с разработчиком
+                </a>
+            </div>
+        </div>
+    </header>
+
     <div class="container">
-        
         <section class="hero">
             <div class="hero-info">
                 <h1>Привет, я <span>Разработчик</span></h1>
-                <p>Создаю лаконичные, быстрые и функциональные цифровые решения. Специализируюсь на автоматизации процессов, разработке Telegram-ботов и современных веб-интерфейсов в стиле минимализма.</p>
+                <p>Создаю лаконичные, быстрые и функциональные цифровые решения. Специализируюсь на автоматизации процессов, разработке Telegram-ботов и современных веб-интерфейсов.</p>
             </div>
             <div class="hero-visual">
                 <div class="floating-interactive" title="Попробуй навести мышь!"></div>
             </div>
         </section>
 
-        <nav class="navigation-tabs">
+        <nav id="projects-nav" class="navigation-tabs">
             <ul class="nav-links">
                 <li><a href="#tg-bots">Telegram Боты</a></li>
                 <li><a href="#web-sites">Веб-Сайты</a></li>
@@ -51,62 +64,35 @@
         <section id="tg-bots" class="section">
             <h2 class="section-title">Telegram Боты</h2>
             <div class="grid">
-                <div class="card">
-                    <tag>Python / Aiogram</tag>
-                    <h3>Referral & Admin Bot</h3>
-                    <p>Многофункциональный бот с продвинутой системой реферальных ссылок, кастомной админ-панелью и автоматической рассылкой статистики.</p>
-                </div>
-                <div class="card">
-                    <tag>API / Node.js</tag>
-                    <h3>Crypto Tracker Bot</h3>
-                    <p>Бот для отслеживания курсов криптовалют в реальном времени с возможностью настройки персональных уведомлений о падении или росте цены.</p>
-                </div>
+                <div class="card"><tag>Python / Aiogram</tag><h3>Referral & Admin Bot</h3><p>Многофункциональный бот с продвинутой системой реферальных ссылок и админ-панелью.</p></div>
+                <div class="card"><tag>API / Node.js</tag><h3>Crypto Tracker Bot</h3><p>Бот для отслеживания курсов криптовалют в реальном времени.</p></div>
             </div>
         </section>
 
         <section id="web-sites" class="section">
             <h2 class="section-title">Веб-Сайты</h2>
             <div class="grid">
-                <div class="card">
-                    <tag>HTML5 / CSS3 / JS</tag>
-                    <h3>Modern Studio Portfolio</h3>
-                    <p>Минималистичный адаптивный сайт-визитка с темной темой, плавными анимациями появления контента и стеклянными эффектами.</p>
-                </div>
-                <div class="card">
-                    <tag>React / Tailwind</tag>
-                    <h3>Dashboard Interface</h3>
-                    <p>Панель управления внутренними процессами компании. Интегрированные графики, таблицы данных и кастомный UI-кит.</p>
-                </div>
+                <div class="card"><tag>HTML5 / CSS3 / JS</tag><h3>Modern Studio Portfolio</h3><p>Минималистичный адаптивный сайт-визитка с эффектами стекла.</p></div>
+                <div class="card"><tag>React / Tailwind</tag><h3>Dashboard Interface</h3><p>Панель управления внутренними процессами компании.</p></div>
             </div>
         </section>
 
         <section id="other-projects" class="section">
             <h2 class="section-title">Другие проекты</h2>
             <div class="grid">
-                <div class="card">
-                    <tag>C++ / CLI</tag>
-                    <h3>System Port Utility</h3>
-                    <p>Низкоуровневая консольная утилита для безопасного мониторинга и логирования передачи данных через системные порты.</p>
-                </div>
-                <div class="card">
-                    <tag>Python / Parsing</tag>
-                    <h3>Data Scraper Pro</h3>
-                    <p>Парсер веб-страниц с поддержкой обхода капчи, многопоточностью и автоматическим сохранением результатов в форматы Excel и JSON.</p>
-                </div>
+                <div class="card"><tag>C++ / CLI</tag><h3>System Port Utility</h3><p>Низкоуровневая консольная утилита для мониторинга портов.</p></div>
+                <div class="card"><tag>Python / Parsing</tag><h3>Data Scraper Pro</h3><p>Парсер веб-страниц с поддержкой многопоточности.</p></div>
             </div>
         </section>
-
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const loaderDisplayTime = 4000; // Развертывание сайта через 4 секунды
-
             setTimeout(() => {
                 const loader = document.getElementById('loader');
                 loader.style.opacity = '0';
                 loader.style.visibility = 'hidden';
-            }, loaderDisplayTime);
+            }, 4000);
         });
     </script>
 </body>
