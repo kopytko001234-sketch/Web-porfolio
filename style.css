@@ -2,35 +2,34 @@
    1. ПЕРЕМЕННЫЕ И БАЗОВЫЕ СТИЛИ
    ========================================================================== */
 :root {
-    --bg-color: #000000;
-    /* Эффект матового стекла (полупрозрачный фон для карточек) */
+    --bg-color: #0d1117; /* Фирменный темно-серый цвет GitHub */
     --card-bg: rgba(22, 24, 32, 0.75); 
     --card-border: rgba(255, 255, 255, 0.08);
-    --accent-color: #5865F2; /* Фирменный сине-фиолетовый цвет */
-    --text-main: #f3f4f6;
-    --text-muted: #9ca3af;
-    --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --accent-color: #5865F2; 
+    --gh-active-orange: #f78166; /* Оранжевая полоса как на скрине GitHub */
+    --text-main: #c9d1d9;
+    --text-muted: #8b949e;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    scroll-behavior: smooth; /* Плавный переход по якорным ссылкам из содержания */
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: var(--bg-color);
-    /* Загрузка картинки из папки images */
+    background-color: #000000;
     background-image: url('images/903c06ca05b95683c7646bf18a2914e5.jpg');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    
     color: var(--text-main);
     font-family: var(--font);
     overflow-x: hidden;
+    padding-top: 70px; /* Чтобы контент не залезал под фиксированную шапку */
 }
 
 .container {
@@ -40,7 +39,86 @@ body {
 }
 
 /* ==========================================================================
-   2. МИНИМАЛИСТИЧНЫЙ ВОЛНОВОЙ ЛОАДЕР (ТЕКСТ + ОВАЛЫ СНИЗУ)
+   ГИТХАБ-ШАПКА (HEADER STYLE)
+   ========================================================================== */
+.gh-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0d1117; /* Сплошной темный цвет GitHub */
+    border-bottom: 1px solid #21262d;
+    z-index: 999;
+}
+
+.gh-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.gh-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 48px; /* Высота вкладки в точности как на GitHub */
+    overflow-x: auto;
+}
+
+/* Элементы меню */
+.gh-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 12px;
+    height: 100%;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    position: relative;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+}
+
+/* Элемент-текст (Бренд) */
+.gh-nav-item.brand {
+    cursor: default;
+    font-weight: 600;
+}
+
+/* Эффект наведения */
+.gh-nav-item:not(.brand):hover {
+    background-color: rgba(177, 186, 196, 0.12);
+    border-radius: 6px;
+}
+
+/* Активный пункт (из скриншота с оранжевой полоской) */
+.gh-nav-item.active {
+    font-weight: 600;
+}
+
+.gh-nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--gh-active-orange);
+}
+
+.gh-icon {
+    color: var(--text-muted);
+}
+
+.gh-nav-item.active .gh-icon {
+    color: var(--text-main);
+}
+
+/* ==========================================================================
+   2. МИНИМАЛИСТИЧНЫЙ ВОЛНОВОЙ ЛОАДЕР
    ========================================================================== */
 #loader {
     position: fixed;
@@ -56,21 +134,19 @@ body {
     transition: opacity 0.5s ease, visibility 0.5s;
 }
 
-/* Контейнер выстраивает текст и точки друг под другом по центру */
 .loader-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px; /* Отступ между текстом и овалами */
+    gap: 15px;
 }
 
-/* Стили для текста "Загрузка" */
 .wave-text {
     display: flex;
     font-size: 2.2rem;
     font-weight: 300;
     letter-spacing: 4px;
-    color: var(--text-main);
+    color: #ffffff;
 }
 
 .wave-text span {
@@ -78,7 +154,6 @@ body {
     animation: textWave 1.4s infinite ease-in-out;
 }
 
-/* Очередность анимации букв */
 .wave-text span:nth-child(1) { animation-delay: 0.0s; }
 .wave-text span:nth-child(2) { animation-delay: 0.1s; }
 .wave-text span:nth-child(3) { animation-delay: 0.2s; }
@@ -88,63 +163,44 @@ body {
 .wave-text span:nth-child(7) { animation-delay: 0.6s; }
 .wave-text span:nth-child(8) { animation-delay: 0.7s; }
 
-/* Контейнер для овалов */
 .wave-dots {
     display: flex;
-    gap: 8px; /* Расстояние между овалами */
+    gap: 8px;
 }
 
-/* Превращаем точки в вертикальные овалы (таблетки) */
 .wave-dots .loader-pill {
     display: inline-block;
-    width: 6px;                 /* Ширина овала */
-    height: 18px;               /* Высота овала (делает его вертикальным) */
+    width: 6px;
+    height: 18px;
     background-color: var(--accent-color);
-    border-radius: 10px;        /* Скругление углов до состояния капсулы */
+    border-radius: 10px;
     animation: pillWave 1.4s infinite ease-in-out;
 }
 
-/* Очередность анимации овалов (продолжают волну после текста) */
 .wave-dots .loader-pill:nth-child(1) { animation-delay: 0.8s; }
 .wave-dots .loader-pill:nth-child(2) { animation-delay: 0.9s; }
 .wave-dots .loader-pill:nth-child(3) { animation-delay: 1.0s; }
 
-/* Анимация для букв (легкий прыжок вверх и яркость) */
 @keyframes textWave {
-    0%, 100% {
-        transform: translateY(0);
-        opacity: 0.3;
-    }
-    50% {
-        transform: translateY(-8px);
-        opacity: 1;
-    }
+    0%, 100% { transform: translateY(0); opacity: 0.3; }
+    50% { transform: translateY(-8px); opacity: 1; }
 }
 
-/* Анимация для овалов (они сжимаются/разжимаются по вертикали и светятся) */
 @keyframes pillWave {
-    0%, 100% {
-        transform: scaleY(1);
-        opacity: 0.3;
-    }
-    50% {
-        transform: scaleY(1.4); /* Овал изящно вытягивается в длину на пике */
-        opacity: 1;
-        background-color: #ffffff; /* На долю секунды подсвечивается белым */
-        box-shadow: 0 0 15px var(--accent-color);
-    }
+    0%, 100% { transform: scaleY(1); opacity: 0.3; }
+    50% { transform: scaleY(1.4); opacity: 1; background-color: #ffffff; box-shadow: 0 0 15px var(--accent-color); }
 }
 
 /* ==========================================================================
    3. ГЛАВНЫЙ БЛОК (HERO) И КИНЕТИЧЕСКАЯ ДЕТАЛЬ
    ========================================================================== */
 .hero {
-    min-height: 80vh;
+    min-height: 75vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 40px;
-    padding-top: 40px;
+    padding-top: 20px;
 }
 
 .hero-info {
@@ -157,6 +213,7 @@ body {
     font-weight: 700;
     margin-bottom: 15px;
     letter-spacing: -1px;
+    color: #ffffff;
 }
 
 .hero-info h1 span {
@@ -176,7 +233,6 @@ body {
     align-items: center;
 }
 
-/* Подвижная абстрактная деталь, сочетающаяся с фоновыми линиями */
 .floating-interactive {
     width: 220px;
     height: 220px;
@@ -200,12 +256,10 @@ body {
     100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
 }
 
-@keyframes spin {
-    100% { transform: rotate(360deg); }
-}
+@keyframes spin { 100% { transform: rotate(360deg); } }
 
 /* ==========================================================================
-   4. СОДЕРЖАНИЕ (МЕНЮ)
+   4. СОДЕРЖАНИЕ И КАРТОЧКИ ПРОЕКТОВ
    ========================================================================== */
 .navigation-tabs {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -219,7 +273,6 @@ body {
     list-style: none;
     display: flex;
     gap: 35px;
-    justify-content: flex-start;
 }
 
 .nav-links a {
@@ -235,59 +288,24 @@ body {
 }
 
 .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--accent-color);
-    transition: width 0.3s ease;
+    content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--accent-color); transition: width 0.3s ease;
 }
 
-.nav-links a:hover {
-    color: var(--text-main);
-}
+.nav-links a:hover { color: var(--text-main); }
+.nav-links a:hover::after { width: 100%; }
 
-.nav-links a:hover::after {
-    width: 100%;
-}
+.section { padding: 60px 0; }
+.section-title { font-size: 1.8rem; margin-bottom: 35px; font-weight: 600; display: flex; align-items: center; gap: 12px; }
+.section-title::before { content: '//'; color: var(--accent-color); font-family: monospace; font-weight: 700; }
 
-/* ==========================================================================
-   5. СЕКЦИИ И СТЕКЛЯННЫЕ КАРТОЧКИ
-   ========================================================================== */
-.section {
-    padding: 60px 0;
-}
-
-.section-title {
-    font-size: 1.8rem;
-    margin-bottom: 35px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.section-title::before {
-    content: '//';
-    color: var(--accent-color);
-    font-family: monospace;
-    font-weight: 700;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-}
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
 
 .card {
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 14px;
     padding: 30px;
-    backdrop-filter: blur(10px); /* Красивое размытие линий фона за карточкой */
+    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -299,57 +317,38 @@ body {
 }
 
 .card tag {
-    display: inline-block;
-    background: rgba(88, 101, 242, 0.15);
-    color: #8c96ff;
-    padding: 5px 12px;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    display: inline-block; background: rgba(88, 101, 242, 0.15); color: #8c96ff; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px;
 }
 
-.card h3 {
-    font-size: 1.35rem;
-    margin-bottom: 12px;
+.card h3 { font-size: 1.35rem; margin-bottom: 12px; color: #ffffff;}
+.card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+/* ==========================================================================
+   5. СТИЛИ ДЛЯ СТРАНИЦЫ КОНТАКТОВ
+   ========================================================================== */
+.contact-box {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 60px 40px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
-.card p {
+.empty-notice {
     color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.6;
+    font-size: 1.1rem;
+    font-style: italic;
 }
 
 /* ==========================================================================
    6. МОБИЛЬНАЯ АДАПТАЦИЯ
    ========================================================================== */
 @media (max-width: 768px) {
-    .hero {
-        flex-direction: column-reverse;
-        text-align: center;
-        min-height: auto;
-        padding-top: 60px;
-        gap: 30px;
-    }
-
-    .hero-info h1 {
-        font-size: 2.3rem;
-    }
-
-    .nav-links {
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
-    }
-
-    .floating-interactive {
-        width: 170px;
-        height: 170px;
-    }
-
-    .section {
-        padding: 40px 0;
-    }
+    .hero { flex-direction: column-reverse; text-align: center; min-height: auto; padding-top: 40px; gap: 30px; }
+    .hero-info h1 { font-size: 2.3rem; }
+    .nav-links { justify-content: center; flex-wrap: wrap; gap: 20px; }
+    .floating-interactive { width: 170px; height: 170px; }
+    .section { padding: 40px 0; }
 }
