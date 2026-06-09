@@ -26,7 +26,6 @@ body {
     color: var(--text-main);
     font-family: var(--font);
     overflow-x: hidden;
-    /* Увеличили отступ сверху, так как панель теперь парит ниже */
     padding-top: 110px; 
 }
 
@@ -48,19 +47,19 @@ body {
 }
 
 /* ==========================================================================
-   2. ПАРЯЩАЯ ВЕРХНЯЯ ПАНЕЛЬ (По референсу photo_2026-06-10_01-12-01.jpg)
+   2. ПАРЯЩАЯ ВЕРХНЯЯ ПАНЕЛЬ И ЦИФРОВЫЕ ЧАСЫ (photo_2026-06-10_01-12-01.jpg / 02.jpg)
    ========================================================================== */
 .gh-header {
     position: fixed;
-    top: 20px; /* Отступ сверху */
+    top: 20px; 
     left: 50%;
     transform: translateX(-50%);
-    width: 95%; /* Ширина как на скриншоте */
+    width: 95%; 
     max-width: 1100px;
     height: 60px;
-    background-color: rgba(255, 255, 255, 0.01) !important; /* Полностью прозрачная основа */
-    border: 1px solid rgba(255, 255, 255, 0.05); /* Тонкий контур по кругу */
-    border-radius: 20px; /* Скругление капсулы */
+    background-color: rgba(255, 255, 255, 0.01) !important; 
+    border: 1px solid rgba(255, 255, 255, 0.05); 
+    border-radius: 20px; 
     backdrop-filter: blur(12px); 
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -73,10 +72,9 @@ body {
     padding: 0 24px;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Название слева, кнопки справа */
+    justify-content: space-between; 
 }
 
-/* Блок ссылок справа */
 .gh-nav-links {
     display: flex;
     align-items: center;
@@ -84,7 +82,6 @@ body {
     height: 100%;
 }
 
-/* Элементы меню */
 .gh-nav-item {
     display: flex;
     align-items: center;
@@ -95,7 +92,7 @@ body {
     font-size: 14px;
     font-weight: 500;
     border-radius: 12px;
-    border: 1px solid transparent; /* Изначально граница невидима */
+    border: 1px solid transparent; 
     cursor: pointer;
     white-space: nowrap;
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -107,15 +104,13 @@ body {
     padding-left: 0;
 }
 
-/* ЭФФЕКТ НАВЕДЕНИЯ: Прозрачная кнопка с границами и неоновым свечением */
 .gh-nav-item:not(.brand):hover {
-    background-color: rgba(88, 101, 242, 0.03); /* Едва заметный синеватый фон внутри */
-    border-color: rgba(88, 101, 242, 0.4); /* Проявленная прозрачная граница */
-    box-shadow: 0 0 15px var(--accent-glow); /* Легкое неоновое свечение по краям */
+    background-color: rgba(88, 101, 242, 0.03); 
+    border-color: rgba(88, 101, 242, 0.4); 
+    box-shadow: 0 0 15px var(--accent-glow); 
     color: #ffffff;
 }
 
-/* Активное состояние кнопки */
 .gh-nav-item.active:not(.brand) {
     background-color: rgba(255, 255, 255, 0.03);
     border-color: rgba(255, 255, 255, 0.15);
@@ -130,6 +125,63 @@ body {
 .gh-nav-item:hover .gh-icon,
 .gh-nav-item.active .gh-icon {
     color: #ffffff;
+}
+
+/* СТИЛИЗАЦИЯ ЧАСОВ ИЗ РЕФЕРЕНСА */
+.header-clock {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 4px 14px;
+    border-radius: 12px;
+    height: 40px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header-clock:hover {
+    border-color: rgba(88, 101, 242, 0.3);
+    box-shadow: 0 0 10px rgba(88, 101, 242, 0.15);
+}
+
+.clock-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+}
+
+.clock-block span:first-child {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    font-family: monospace;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+
+.clock-label {
+    font-size: 6px;
+    color: var(--text-muted);
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    margin-top: -1px;
+}
+
+.clock-colon {
+    font-size: 13px;
+    color: var(--accent-color);
+    font-weight: 700;
+    animation: pulse 1s infinite;
+    line-height: 1.2;
+    padding-bottom: 6px;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
 }
 
 /* ==========================================================================
@@ -151,7 +203,7 @@ body {
 
 .loader-content { display: flex; flex-direction: column; align-items: center; gap: 15px; }
 .wave-text { display: flex; font-size: 2.2rem; font-weight: 300; letter-spacing: 4px; color: #ffffff; }
-.wave-text span { display: inline-block; animation: textWave 1.4s infinite ease-in-out; }
+.wave-text span { inline-block; animation: textWave 1.4s infinite ease-in-out; }
 .wave-text span:nth-child(1) { animation-delay: 0.0s; }
 .wave-text span:nth-child(2) { animation-delay: 0.1s; }
 .wave-text span:nth-child(3) { animation-delay: 0.2s; }
@@ -238,7 +290,8 @@ body {
 @media (max-width: 768px) {
     .gh-header { width: 90%; padding: 0; }
     .gh-container { padding: 0 12px; }
-    .gh-nav-item { padding: 6px 10px; font-size: 12px; }
+    .gh-nav-item { padding: 6px 10px; font-size: 11px; }
+    .header-clock { display: none; } /* Прячем на маленьких экранах, чтобы не загромождать */
     .hero { flex-direction: column-reverse; text-align: center; min-height: auto; padding-top: 40px; gap: 30px; }
     .hero-info h1 { font-size: 2.3rem; }
     .nav-links { justify-content: center; flex-wrap: wrap; gap: 20px; }
