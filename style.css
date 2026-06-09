@@ -47,7 +47,7 @@ body {
 }
 
 /* ==========================================================================
-   2. ПАРЯЩАЯ ВЕРХНЯЯ ПАНЕЛЬ
+   2. ПАРЯЩАЯ ВЕРХНЯЯ ПАНЕЛЬ Навигации
    ========================================================================== */
 .gh-header {
     position: fixed;
@@ -125,7 +125,7 @@ body {
 .gh-nav-item:hover .gh-icon, .gh-nav-item.active .gh-icon { color: #ffffff; }
 
 /* ==========================================================================
-   2Б. ОТДЕЛЬНЫЕ ПАРЯЩИЕ ГОРИЗОНТАЛЬНЫЕ ЧАСЫ
+   3. ОТДЕЛЬНЫЕ ПАРЯЩИЕ ГОРИЗОНТАЛЬНЫЕ ЧАСЫ
    ========================================================================== */
 .floating-clock-container {
     position: fixed;
@@ -199,7 +199,7 @@ body {
 }
 
 /* ==========================================================================
-   3. МИНИМАЛИСТИЧНЫЙ ВОЛНОВОЙ ЛОАДЕР
+   4. ПОЭТАПНЫЙ ЦИКЛИЧНЫЙ ЭКРАН ЗАГРУЗКИ (ОБНОВЛЕННЫЙ)
    ========================================================================== */
 #loader {
     position: fixed;
@@ -215,15 +215,80 @@ body {
     transition: opacity 0.5s ease, visibility 0.5s;
 }
 
-.loader-content { display: flex; flex-direction: column; align-items: center; gap: 15px; }
-.wave-text { display: flex; font-size: 2.2rem; font-weight: 300; letter-spacing: 4px; color: #ffffff; }
-.wave-text span { display: inline-block; animation: textWave 1.4s infinite ease-in-out; }
-@keyframes textWave { 0%, 100% { transform: translateY(0); opacity: 0.3; } 50% { transform: translateY(-8px); opacity: 1; } }
-.wave-dots .loader-pill { display: inline-block; width: 6px; height: 18px; background-color: var(--accent-color); border-radius: 10px; animation: pillWave 1.4s infinite ease-in-out; }
-@keyframes pillWave { 0%, 100% { transform: scaleY(1); opacity: 0.3; } 50% { transform: scaleY(1.4); opacity: 1; background-color: #ffffff; box-shadow: 0 0 15px var(--accent-color); } }
+.loader-content { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 15px; 
+}
+
+.wave-text { 
+    display: flex; 
+    font-size: 2.2rem; 
+    font-weight: 300; 
+    letter-spacing: 4px; 
+    color: #ffffff; 
+}
+
+.wave-text span { 
+    display: inline-block; 
+    animation: textWave 1.4s infinite ease-in-out; 
+}
+
+@keyframes textWave { 
+    0%, 100% { transform: translateY(0); opacity: 0.3; } 
+    50% { transform: translateY(-8px); opacity: 1; } 
+}
+
+/* Контейнер для полосок */
+.wave-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    height: 30px; /* Фиксированная высота для стабильности трансформации */
+}
+
+/* Общие базовые стили полосок */
+.wave-dots .loader-pill {
+    display: inline-block;
+    width: 6px;
+    height: 16px;
+    background-color: var(--accent-color);
+    border-radius: 10px;
+    animation: pillWave 0.9s infinite ease-in-out;
+}
+
+/* Поэтапная задержка от 1 до 3 по кругу */
+.wave-dots .pill-1 {
+    animation-delay: 0s;
+}
+
+.wave-dots .pill-2 {
+    animation-delay: 0.3s;
+}
+
+.wave-dots .pill-3 {
+    animation-delay: 0.6s;
+}
+
+/* Анимация вертикального изменения размера */
+@keyframes pillWave {
+    0%, 100% {
+        transform: scaleY(1);
+        opacity: 0.35;
+        background-color: var(--accent-color);
+    }
+    50% {
+        transform: scaleY(2.2); /* Растягивается строго по вертикали */
+        opacity: 1;
+        background-color: #ffffff; /* Белое неоновое свечение в пике */
+        box-shadow: 0 0 15px var(--accent-color);
+    }
+}
 
 /* ==========================================================================
-   4. ГЛАВНЫЙ БЛОК (HERO) И КИНЕТИЧЕСКАЯ ДЕТАЛЬ
+   5. ГЛАВНЫЙ БЛОК (HERO) И КИНЕТИЧЕСКАЯ ДЕТАЛЬ
    ========================================================================== */
 .hero { min-height: 75vh; display: flex; align-items: center; justify-content: space-between; gap: 40px; padding-top: 20px; }
 .hero-info { flex: 1; max-width: 600px; }
@@ -247,7 +312,7 @@ body {
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
 /* ==========================================================================
-   5. СЕКЦИИ И КАРТОЧКИ
+   6. СЕКЦИИ, КАРТОЧКИ И БЛОК СВЯЗИ
    ========================================================================== */
 .section { padding: 60px 0; }
 .section-title { font-size: 1.8rem; margin-bottom: 35px; font-weight: 600; display: flex; align-items: center; gap: 12px; }
@@ -266,9 +331,6 @@ body {
 .card h3 { font-size: 1.35rem; margin-bottom: 12px; color: #ffffff;}
 .card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
 
-/* ==========================================================================
-   5Б. ОБНОВЛЕННАЯ СЕКЦИЯ СВЯЗИ С ВЫДВИЖНЫМИ КНОПКАМИ
-   ========================================================================== */
 .contact-box {
     padding: 50px 40px;
     text-align: center;
@@ -292,7 +354,9 @@ body {
     margin-bottom: 35px;
 }
 
-/* Контейнер интерактивной панели */
+/* ==========================================================================
+   7. СТИЛИ ИНТЕРАКТИВНЫХ ПОДВИЖНЫХ КНОПОК СВЯЗИ
+   ========================================================================== */
 .social-sliding-container {
     display: flex;
     justify-content: center;
@@ -302,16 +366,15 @@ body {
     margin-top: 20px;
 }
 
-/* Общий стиль подвижной кнопки */
 .slide-social-btn {
     display: flex;
     align-items: center;
-    width: 50px; /* Изначально кнопка круглая */
+    width: 50px; 
     height: 50px;
     background: rgba(255, 255, 255, 0.01);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 25px;
-    overflow: hidden; /* Прячет вылезающий текст */
+    overflow: hidden; 
     cursor: pointer;
     text-decoration: none;
     color: var(--text-main);
@@ -320,19 +383,17 @@ body {
                 box-shadow 0.3s ease;
 }
 
-/* Внутренняя обертка иконки */
 .btn-icon-wrapper {
     width: 48px;
     height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0; /* Не дает иконке сжиматься */
+    flex-shrink: 0; 
     color: var(--text-muted);
     transition: color 0.3s ease;
 }
 
-/* Текст внутри, который будет выдвигаться */
 .btn-sliding-text {
     font-size: 14px;
     font-weight: 600;
@@ -344,7 +405,7 @@ body {
     transition: opacity 0.3s ease, transform 0.4s ease;
 }
 
-/* ЭФФЕКТ НАВЕДЕНИЯ (ВЫДВИЖЕНИЕ И СВЕЧЕНИЕ) */
+/* Наведение на кнопки */
 .slide-social-btn:hover {
     border-color: rgba(88, 101, 242, 0.4);
     box-shadow: 0 0 15px var(--accent-glow);
@@ -361,14 +422,14 @@ body {
     transform: translateX(0);
 }
 
-/* Кастомная адаптивная ширина под длину каждого текста при наведении */
+/* Раскрытие индивидуально под длину текста */
 .slide-social-btn.tg-btn:hover { width: 190px; }
 .slide-social-btn.dc-btn:hover { width: 200px; }
 .slide-social-btn.mail-btn:hover { width: 245px; }
 .slide-social-btn.steam-btn:hover { width: 180px; }
 
 /* ==========================================================================
-   6. АДАПТИВНОСТЬ ПОД МОБИЛЬНЫЕ УСТРОЙСТВА
+   8. АДАПТИВНОСТЬ ПОД МОБИЛЬНЫЕ УСТРОЙСТВА
    ========================================================================== */
 @media (max-width: 768px) {
     .gh-header { position: static; width: 95%; margin: 10px auto; transform: none; left: auto; height: auto; padding: 10px 0; border-radius: 14px; }
@@ -385,7 +446,7 @@ body {
     .hero-info h1 { font-size: 2.3rem; }
     .grid { grid-template-columns: 1fr; }
     
-    /* На мобилках кнопки сразу делаем слегка раскрытыми */
+    /* На смартфонах плашки контактов держим полуоткрытыми для удобства тапа */
     .slide-social-btn { width: auto !important; border-radius: 12px; padding-right: 10px; }
     .btn-sliding-text { opacity: 1; transform: translateX(0); }
 }
