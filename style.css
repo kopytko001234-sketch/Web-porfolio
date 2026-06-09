@@ -47,15 +47,14 @@ body {
 }
 
 /* ==========================================================================
-   2. ПАРЯЩАЯ ВЕРХНЯЯ ПАНЕЛЬ И ЦИФРОВЫЕ ЧАСЫ (photo_2026-06-10_01-12-01.jpg / 02.jpg)
+   2. ПАРЯЩАЯ ВЕРХНЯЯ ПАНЕЛЬ (Выровнена слева с отступом)
    ========================================================================== */
 .gh-header {
     position: fixed;
     top: 20px; 
-    left: 50%;
-    transform: translateX(-50%);
-    width: 95%; 
-    max-width: 1100px;
+    left: calc((100% - 1100px) / 2 + 20px); /* Привязка к сетке контейнера */
+    width: calc(100% - 370px); /* Оставляем справа место под блок часов */
+    max-width: 750px;
     height: 60px;
     background-color: rgba(255, 255, 255, 0.01) !important; 
     border: 1px solid rgba(255, 255, 255, 0.05); 
@@ -64,6 +63,15 @@ body {
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     z-index: 99999; 
+    transition: all 0.3s ease;
+}
+
+/* На экранах, когда контейнер сжимается */
+@media (min-width: 769px) and (max-width: 1150px) {
+    .gh-header {
+        left: 2.5%;
+        width: 63%;
+    }
 }
 
 .gh-container {
@@ -127,61 +135,82 @@ body {
     color: #ffffff;
 }
 
-/* СТИЛИЗАЦИЯ ЧАСОВ ИЗ РЕФЕРЕНСА */
-.header-clock {
+/* ==========================================================================
+   2Б. ОТДЕЛЬНЫЕ ПАРЯЩИЕ ГОРИЗОНТАЛЬНЫЕ ЧАСЫ (По новому референсу)
+   ========================================================================== */
+.floating-clock-container {
+    position: fixed;
+    top: 20px;
+    right: calc((100% - 1100px) / 2 + 20px); /* Симметрично выровнены с правого края */
+    height: 60px;
     display: flex;
     align-items: center;
-    gap: 6px;
-    background: rgba(255, 255, 255, 0.03);
+    gap: 8px;
+    z-index: 99999;
+}
+
+@media (min-width: 769px) and (max-width: 1150px) {
+    .floating-clock-container {
+        right: 2.5%;
+    }
+}
+
+/* Стиль изолированных прозрачных квадратов для цифр */
+.clock-glass-card {
+    width: 62px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.01);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 4px 14px;
-    border-radius: 12px;
-    height: 40px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.header-clock:hover {
-    border-color: rgba(88, 101, 242, 0.3);
-    box-shadow: 0 0 10px rgba(88, 101, 242, 0.15);
-}
-
-.clock-block {
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-width: 22px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
-.clock-block span:first-child {
-    font-size: 14px;
+.floating-clock-container:hover .clock-glass-card {
+    border-color: rgba(88, 101, 242, 0.25);
+    background-color: rgba(88, 101, 242, 0.01);
+    box-shadow: 0 4px 20px rgba(88, 101, 242, 0.1);
+}
+
+.clock-glass-card span:first-child {
+    font-size: 18px;
     font-weight: 600;
     color: #ffffff;
     font-family: monospace;
     letter-spacing: 0.5px;
-    line-height: 1.2;
+    line-height: 1.1;
 }
 
-.clock-label {
+.clock-card-label {
     font-size: 6px;
     color: var(--text-muted);
     font-weight: 700;
-    letter-spacing: 0.3px;
-    margin-top: -1px;
+    letter-spacing: 0.4px;
+    margin-top: 2px;
 }
 
-.clock-colon {
-    font-size: 13px;
+/* Разделительные точки между квадратами */
+.clock-separator {
+    font-size: 18px;
     color: var(--accent-color);
     font-weight: 700;
-    animation: pulse 1s infinite;
-    line-height: 1.2;
-    padding-bottom: 6px;
+    font-family: monospace;
+    animation: clockBlink 1s infinite;
+    line-height: 60px;
+    height: 60px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-@keyframes pulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
+@keyframes clockBlink {
+    0%, 100% { opacity: 0.2; transform: scale(0.95); }
+    50% { opacity: 1; transform: scale(1.05); }
 }
 
 /* ==========================================================================
@@ -203,7 +232,7 @@ body {
 
 .loader-content { display: flex; flex-direction: column; align-items: center; gap: 15px; }
 .wave-text { display: flex; font-size: 2.2rem; font-weight: 300; letter-spacing: 4px; color: #ffffff; }
-.wave-text span { inline-block; animation: textWave 1.4s infinite ease-in-out; }
+.wave-text span { display: inline-block; animation: textWave 1.4s infinite ease-in-out; }
 .wave-text span:nth-child(1) { animation-delay: 0.0s; }
 .wave-text span:nth-child(2) { animation-delay: 0.1s; }
 .wave-text span:nth-child(3) { animation-delay: 0.2s; }
@@ -288,11 +317,19 @@ body {
    6. АДАПТИВНОСТЬ ПОД МОБИЛЬНЫЕ УСТРОЙСТВА
    ========================================================================== */
 @media (max-width: 768px) {
-    .gh-header { width: 90%; padding: 0; }
-    .gh-container { padding: 0 12px; }
-    .gh-nav-item { padding: 6px 10px; font-size: 11px; }
-    .header-clock { display: none; } /* Прячем на маленьких экранах, чтобы не загромождать */
-    .hero { flex-direction: column-reverse; text-align: center; min-height: auto; padding-top: 40px; gap: 30px; }
+    .gh-header { position: static; width: 95%; max-width: none; margin: 10px auto; transform: none; left: auto; height: auto; padding: 10px 0; border-radius: 14px; }
+    .gh-container { flex-direction: column; gap: 10px; padding: 0 15px; }
+    .gh-nav-links { gap: 4px; }
+    .gh-nav-item { padding: 6px 10px; font-size: 12px; }
+    
+    /* Смещение часов под шапку на мобилках */
+    .floating-clock-container { position: static; justify-content: center; margin: 15px auto 0 auto; transform: none; right: auto; top: auto; }
+    .clock-glass-card { width: 50px; height: 48px; border-radius: 10px; }
+    .clock-glass-card span:first-child { font-size: 14px; }
+    .clock-separator { font-size: 14px; line-height: 48px; height: 48px; }
+    
+    body { padding-top: 20px; }
+    .hero { flex-direction: column-reverse; text-align: center; min-height: auto; padding-top: 20px; gap: 30px; }
     .hero-info h1 { font-size: 2.3rem; }
     .nav-links { justify-content: center; flex-wrap: wrap; gap: 20px; }
     .floating-interactive { width: 170px; height: 170px; }
