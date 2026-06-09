@@ -1,12 +1,12 @@
 /* ==========================================================================
-   1. ПЕРЕМЕННЫЕ И БАЗОВЫЕ СТИЛИ
+   1. ПЕРЕМЕННЫЕ И БАЗОВЫЕ СТИЛИ (ОБНОВЛЕНО)
    ========================================================================== */
 :root {
-    --bg-color: #0d1117; /* Фирменный темно-серый цвет GitHub */
+    --bg-color: #0d1117; 
     --card-bg: rgba(22, 24, 32, 0.75); 
     --card-border: rgba(255, 255, 255, 0.08);
     --accent-color: #5865F2; 
-    --gh-active-orange: #f78166; /* Оранжевая полоса как на скрине GitHub */
+    --gh-active-orange: #f78166; 
     --text-main: #c9d1d9;
     --text-muted: #8b949e;
     --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -21,6 +21,7 @@
 
 body {
     background-color: #000000;
+    /* Твое изображение из папки images */
     background-image: url('images/903c06ca05b95683c7646bf18a2914e5.jpg');
     background-attachment: fixed;
     background-size: cover;
@@ -29,7 +30,9 @@ body {
     color: var(--text-main);
     font-family: var(--font);
     overflow-x: hidden;
-    padding-top: 70px; /* Чтобы контент не залезал под фиксированную шапку */
+    
+    /* ВАЖНО: Увеличили отступ сверху, чтобы контент не прятался под шапку */
+    padding-top: 80px; 
 }
 
 .container {
@@ -39,30 +42,33 @@ body {
 }
 
 /* ==========================================================================
-   ГИТХАБ-ШАПКА (HEADER STYLE)
+   ГИТХАБ-ШАПКА (ОБНОВЛЕНО - ИСПРАВЛЕН Z-INDEX)
    ========================================================================== */
 .gh-header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #0d1117; /* Сплошной темный цвет GitHub */
+    height: 48px; /* Четкая высота панели */
+    background-color: #0d1117 !important; /* Принудительный цвет GitHub, чтобы фон не просвечивал */
     border-bottom: 1px solid #21262d;
-    z-index: 999;
+    
+    /* ВАЖНО: z-index 99999 гарантирует, что шапка будет поверх ВСЕХ элементов и фонов */
+    z-index: 99999; 
 }
 
 .gh-container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
+    height: 100%;
 }
 
 .gh-nav {
     display: flex;
     align-items: center;
     gap: 8px;
-    height: 48px; /* Высота вкладки в точности как на GitHub */
-    overflow-x: auto;
+    height: 100%;
 }
 
 /* Элементы меню */
@@ -94,7 +100,7 @@ body {
     border-radius: 6px;
 }
 
-/* Активный пункт (из скриншота с оранжевой полоской) */
+/* Активный пункт с оранжевой полоской */
 .gh-nav-item.active {
     font-weight: 600;
 }
