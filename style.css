@@ -47,13 +47,13 @@ body {
 }
 
 /* ==========================================================================
-   2. ПАРЯЩАЯ ВЕРХНЯЯ ПАНЕЛЬ (Выровнена слева с отступом)
+   2. ПАРЯЩАЯ ВЕРХНЯЯ ПАНЕЛЬ
    ========================================================================== */
 .gh-header {
     position: fixed;
     top: 20px; 
-    left: calc((100% - 1100px) / 2 + 20px); /* Привязка к сетке контейнера */
-    width: calc(100% - 370px); /* Оставляем справа место под блок часов */
+    left: calc((100% - 1100px) / 2 + 20px); 
+    width: calc(100% - 370px); 
     max-width: 750px;
     height: 60px;
     background-color: rgba(255, 255, 255, 0.01) !important; 
@@ -66,12 +66,8 @@ body {
     transition: all 0.3s ease;
 }
 
-/* На экранах, когда контейнер сжимается */
 @media (min-width: 769px) and (max-width: 1150px) {
-    .gh-header {
-        left: 2.5%;
-        width: 63%;
-    }
+    .gh-header { left: 2.5%; width: 63%; }
 }
 
 .gh-container {
@@ -125,23 +121,16 @@ body {
     font-weight: 600;
 }
 
-.gh-icon {
-    color: var(--text-muted);
-    transition: color 0.3s ease;
-}
-
-.gh-nav-item:hover .gh-icon,
-.gh-nav-item.active .gh-icon {
-    color: #ffffff;
-}
+.gh-icon { color: var(--text-muted); transition: color 0.3s ease; }
+.gh-nav-item:hover .gh-icon, .gh-nav-item.active .gh-icon { color: #ffffff; }
 
 /* ==========================================================================
-   2Б. ОТДЕЛЬНЫЕ ПАРЯЩИЕ ГОРИЗОНТАЛЬНЫЕ ЧАСЫ (По новому референсу)
+   2Б. ОТДЕЛЬНЫЕ ПАРЯЩИЕ ГОРИЗОНТАЛЬНЫЕ ЧАСЫ
    ========================================================================== */
 .floating-clock-container {
     position: fixed;
     top: 20px;
-    right: calc((100% - 1100px) / 2 + 20px); /* Симметрично выровнены с правого края */
+    right: calc((100% - 1100px) / 2 + 20px); 
     height: 60px;
     display: flex;
     align-items: center;
@@ -150,12 +139,9 @@ body {
 }
 
 @media (min-width: 769px) and (max-width: 1150px) {
-    .floating-clock-container {
-        right: 2.5%;
-    }
+    .floating-clock-container { right: 2.5%; }
 }
 
-/* Стиль изолированных прозрачных квадратов для цифр */
 .clock-glass-card {
     width: 62px;
     height: 60px;
@@ -195,7 +181,6 @@ body {
     margin-top: 2px;
 }
 
-/* Разделительные точки между квадратами */
 .clock-separator {
     font-size: 18px;
     color: var(--accent-color);
@@ -233,22 +218,8 @@ body {
 .loader-content { display: flex; flex-direction: column; align-items: center; gap: 15px; }
 .wave-text { display: flex; font-size: 2.2rem; font-weight: 300; letter-spacing: 4px; color: #ffffff; }
 .wave-text span { display: inline-block; animation: textWave 1.4s infinite ease-in-out; }
-.wave-text span:nth-child(1) { animation-delay: 0.0s; }
-.wave-text span:nth-child(2) { animation-delay: 0.1s; }
-.wave-text span:nth-child(3) { animation-delay: 0.2s; }
-.wave-text span:nth-child(4) { animation-delay: 0.3s; }
-.wave-text span:nth-child(5) { animation-delay: 0.4s; }
-.wave-text span:nth-child(6) { animation-delay: 0.5s; }
-.wave-text span:nth-child(7) { animation-delay: 0.6s; }
-.wave-text span:nth-child(8) { animation-delay: 0.7s; }
-
-.wave-dots { display: flex; gap: 8px; }
-.wave-dots .loader-pill { display: inline-block; width: 6px; height: 18px; background-color: var(--accent-color); border-radius: 10px; animation: pillWave 1.4s infinite ease-in-out; }
-.wave-dots .loader-pill:nth-child(1) { animation-delay: 0.8s; }
-.wave-dots .loader-pill:nth-child(2) { animation-delay: 0.9s; }
-.wave-dots .loader-pill:nth-child(3) { animation-delay: 1.0s; }
-
 @keyframes textWave { 0%, 100% { transform: translateY(0); opacity: 0.3; } 50% { transform: translateY(-8px); opacity: 1; } }
+.wave-dots .loader-pill { display: inline-block; width: 6px; height: 18px; background-color: var(--accent-color); border-radius: 10px; animation: pillWave 1.4s infinite ease-in-out; }
 @keyframes pillWave { 0%, 100% { transform: scaleY(1); opacity: 0.3; } 50% { transform: scaleY(1.4); opacity: 1; background-color: #ffffff; box-shadow: 0 0 15px var(--accent-color); } }
 
 /* ==========================================================================
@@ -269,23 +240,15 @@ body {
     animation: morph 8s infinite ease-in-out, spin 15s infinite linear;
     cursor: pointer;
     box-shadow: 0 0 50px rgba(255, 255, 255, 0.01);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .floating-interactive:hover { transform: scale(1.08) rotate(15deg); background: linear-gradient(45deg, var(--accent-color), #ffffff); box-shadow: 0 0 50px rgba(88, 101, 242, 0.3); }
-
-@keyframes morph { 0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 50% { border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%; } 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } }
+@keyframes morph { 0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 50% { border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%; } }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
 /* ==========================================================================
-   5. НАВИГАЦИЯ ПО ПРОЕКТАМ И ПРОЗРАЧНЫЕ КАРТОЧКИ
+   5. СЕКЦИИ И КАРТОЧКИ
    ========================================================================== */
-.navigation-tabs { border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 25px 0; margin: 40px 0; }
-.nav-links { list-style: none; display: flex; gap: 35px; }
-.nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s ease; position: relative; padding-bottom: 5px; }
-.nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--accent-color); transition: width 0.3s ease; }
-.nav-links a:hover { color: var(--text-main); }
-.nav-links a:hover::after { width: 100%; }
-
 .section { padding: 60px 0; }
 .section-title { font-size: 1.8rem; margin-bottom: 35px; font-weight: 600; display: flex; align-items: center; gap: 12px; }
 .section-title::before { content: '//'; color: var(--accent-color); font-family: monospace; font-weight: 700; }
@@ -296,42 +259,133 @@ body {
     border: 1px solid var(--card-border); 
     border-radius: 14px; 
     padding: 30px; 
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease, background-color 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease;
 }
-
-.card:hover, .contact-box:hover { 
-    transform: translateY(-5px); 
-    background-color: rgba(255, 255, 255, 0.015);
-    border-color: rgba(255, 255, 255, 0.12); 
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); 
-}
-
-.card tag { display: inline-block; background: rgba(88, 101, 242, 0.12); color: #8c96ff; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+.card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.12); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); }
+.card tag { display: inline-block; background: rgba(88, 101, 242, 0.12); color: #8c96ff; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; }
 .card h3 { font-size: 1.35rem; margin-bottom: 12px; color: #ffffff;}
 .card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
 
-.contact-box { padding: 60px 40px; text-align: center; }
-.empty-notice { color: var(--text-muted); font-size: 1.1rem; font-style: italic; }
+/* ==========================================================================
+   5Б. ОБНОВЛЕННАЯ СЕКЦИЯ СВЯЗИ С ВЫДВИЖНЫМИ КНОПКАМИ
+   ========================================================================== */
+.contact-box {
+    padding: 50px 40px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.003);
+    border-color: rgba(255, 255, 255, 0.02);
+}
+
+.contact-lead-text {
+    font-size: 1.2rem;
+    color: #ffffff;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+.contact-sub-title {
+    font-size: 1rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 35px;
+}
+
+/* Контейнер интерактивной панели */
+.social-sliding-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Общий стиль подвижной кнопки */
+.slide-social-btn {
+    display: flex;
+    align-items: center;
+    width: 50px; /* Изначально кнопка круглая */
+    height: 50px;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 25px;
+    overflow: hidden; /* Прячет вылезающий текст */
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-main);
+    transition: width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.15), 
+                border-color 0.3s ease, 
+                box-shadow 0.3s ease;
+}
+
+/* Внутренняя обертка иконки */
+.btn-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Не дает иконке сжиматься */
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+
+/* Текст внутри, который будет выдвигаться */
+.btn-sliding-text {
+    font-size: 14px;
+    font-weight: 600;
+    padding-left: 5px;
+    padding-right: 20px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease, transform 0.4s ease;
+}
+
+/* ЭФФЕКТ НАВЕДЕНИЯ (ВЫДВИЖЕНИЕ И СВЕЧЕНИЕ) */
+.slide-social-btn:hover {
+    border-color: rgba(88, 101, 242, 0.4);
+    box-shadow: 0 0 15px var(--accent-glow);
+    background: rgba(88, 101, 242, 0.03);
+    color: #ffffff;
+}
+
+.slide-social-btn:hover .btn-icon-wrapper {
+    color: #ffffff;
+}
+
+.slide-social-btn:hover .btn-sliding-text {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Кастомная адаптивная ширина под длину каждого текста при наведении */
+.slide-social-btn.tg-btn:hover { width: 190px; }
+.slide-social-btn.dc-btn:hover { width: 200px; }
+.slide-social-btn.mail-btn:hover { width: 245px; }
+.slide-social-btn.steam-btn:hover { width: 180px; }
 
 /* ==========================================================================
    6. АДАПТИВНОСТЬ ПОД МОБИЛЬНЫЕ УСТРОЙСТВА
    ========================================================================== */
 @media (max-width: 768px) {
-    .gh-header { position: static; width: 95%; max-width: none; margin: 10px auto; transform: none; left: auto; height: auto; padding: 10px 0; border-radius: 14px; }
+    .gh-header { position: static; width: 95%; margin: 10px auto; transform: none; left: auto; height: auto; padding: 10px 0; border-radius: 14px; }
     .gh-container { flex-direction: column; gap: 10px; padding: 0 15px; }
-    .gh-nav-links { gap: 4px; }
     .gh-nav-item { padding: 6px 10px; font-size: 12px; }
     
-    /* Смещение часов под шапку на мобилках */
-    .floating-clock-container { position: static; justify-content: center; margin: 15px auto 0 auto; transform: none; right: auto; top: auto; }
+    .floating-clock-container { position: static; justify-content: center; margin: 15px auto 0 auto; }
     .clock-glass-card { width: 50px; height: 48px; border-radius: 10px; }
     .clock-glass-card span:first-child { font-size: 14px; }
     .clock-separator { font-size: 14px; line-height: 48px; height: 48px; }
     
     body { padding-top: 20px; }
-    .hero { flex-direction: column-reverse; text-align: center; min-height: auto; padding-top: 20px; gap: 30px; }
+    .hero { flex-direction: column-reverse; text-align: center; min-height: auto; gap: 30px; }
     .hero-info h1 { font-size: 2.3rem; }
-    .nav-links { justify-content: center; flex-wrap: wrap; gap: 20px; }
-    .floating-interactive { width: 170px; height: 170px; }
-    .section { padding: 40px 0; }
+    .grid { grid-template-columns: 1fr; }
+    
+    /* На мобилках кнопки сразу делаем слегка раскрытыми */
+    .slide-social-btn { width: auto !important; border-radius: 12px; padding-right: 10px; }
+    .btn-sliding-text { opacity: 1; transform: translateX(0); }
 }
