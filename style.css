@@ -337,9 +337,8 @@ body {
     width: 50px; 
     height: 50px;
     background: rgba(255, 255, 255, 0.005);
-    /* Изначальная аккуратная подсветка границ */
     border: 1px solid rgba(255, 255, 255, 0.04);
-    border-bottom: 2px solid var(--btn-color); /* Цветная полоска снизу в покое */
+    border-bottom: 2px solid var(--btn-color); 
     border-radius: 25px;
     overflow: hidden; 
     cursor: pointer;
@@ -347,7 +346,6 @@ body {
     color: var(--text-main);
     box-shadow: inset 0 0 10px var(--btn-glow), 0 4px 12px rgba(0, 0, 0, 0.3);
     
-    /* Плавное изменение ширины и тени */
     transition: width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.15), 
                 border-color 0.3s ease, 
                 box-shadow 0.4s ease,
@@ -361,9 +359,15 @@ body {
     align-items: center;
     justify-content: center;
     flex-shrink: 0; 
-    color: var(--btn-color); /* Иконки окрашены в цвет сервиса изначально */
+    color: var(--btn-color); 
     filter: drop-shadow(0 0 4px var(--btn-glow));
     transition: color 0.3s ease, filter 0.3s ease;
+}
+
+/* Гарантирует, что встроенный SVG всегда центрируется правильно */
+.btn-icon-wrapper svg {
+    display: block;
+    margin: auto;
 }
 
 .btn-sliding-text {
@@ -377,10 +381,9 @@ body {
     transition: opacity 0.3s ease, transform 0.4s ease;
 }
 
-/* Эффект яркого парения и раскрытия при наведении */
+/* Эффект яркого парения при наведении */
 .slide-social-btn:hover {
     border-color: var(--btn-color);
-    /* Взрывное неоновое свечение над кнопкой */
     box-shadow: 0 0 25px var(--btn-glow-active), inset 0 0 15px var(--btn-glow);
     background-color: rgba(255, 255, 255, 0.02);
     color: #ffffff;
@@ -420,7 +423,6 @@ body {
     .hero-info h1 { font-size: 2.3rem; }
     .grid { grid-template-columns: 1fr; }
     
-    /* На смартфонах плашки сразу раскрыты и мягко светятся */
     .slide-social-btn { width: auto !important; border-radius: 12px; padding-right: 10px; border-color: var(--btn-color); }
     .btn-sliding-text { opacity: 1; transform: translateX(0); }
 }
