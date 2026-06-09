@@ -64,16 +64,32 @@
         <section id="tg-bots" class="section">
             <h2 class="section-title">Telegram Боты</h2>
             <div class="grid">
-                <div class="card"><tag>Python / Aiogram</tag><h3>Referral & Admin Bot</h3><p>Многофункциональный бот с продвинутой системой реферальных ссылок и админ-панелью.</p></div>
-                <div class="card"><tag>API / Node.js</tag><h3>Crypto Tracker Bot</h3><p>Бот для отслеживания курсов криптовалют в реальном времени.</p></div>
+                <div class="card">
+                    <tag>Python / Aiogram</tag>
+                    <h3>Referral & Admin Bot</h3>
+                    <p>Многофункциональный бот с продвинутой системой реферальных ссылок и админ-панелью.</p>
+                </div>
+                <div class="card">
+                    <tag>API / Node.js</tag>
+                    <h3>Crypto Tracker Bot</h3>
+                    <p>Бот для отслеживания курсов криптовалют в реальном времени.</p>
+                </div>
             </div>
         </section>
 
         <section id="web-sites" class="section">
             <h2 class="section-title">Веб-Сайты</h2>
             <div class="grid">
-                <div class="card"><tag>HTML5 / CSS3 / JS</tag><h3>Modern Studio Portfolio</h3><p>Минималистичный адаптивный сайт-визитка с эффектами стекла.</p></div>
-                <div class="card"><tag>React / Tailwind</tag><h3>Dashboard Interface</h3><p>Панель управления внутренними процессами компании.</p></div>
+                <div class="card">
+                    <tag>HTML5 / CSS3 / JS</tag>
+                    <h3>Modern Studio Portfolio</h3>
+                    <p>Минималистичный адаптивный сайт-визитка с эффектами стекла.</p>
+                </div>
+                <div class="card">
+                    <tag>React / Tailwind</tag>
+                    <h3>Dashboard Interface</h3>
+                    <p>Панель управления внутренними процессами компании.</p>
+                </div>
             </div>
         </section>
     </div>
@@ -83,21 +99,14 @@
             const loader = document.getElementById('loader');
             const hiddenElements = document.querySelectorAll('.main-content-loaded');
 
-            // Проверяем, заходил ли пользователь в этой сессии
             if (sessionStorage.getItem('portfolio-loaded')) {
-                // Если уже заходил: мгновенно убираем лоадер и включаем видимость сайта
                 loader.style.display = 'none';
                 hiddenElements.forEach(el => el.classList.add('visible'));
             } else {
-                // Если это первый запуск: держим лоадер 4 секунды
                 setTimeout(() => {
                     loader.style.opacity = '0';
                     loader.style.visibility = 'hidden';
-                    
-                    // Плавно проявляем шапку и контент
                     hiddenElements.forEach(el => el.classList.add('visible'));
-                    
-                    // Запоминаем в памяти браузера, что первый вход выполнен
                     sessionStorage.setItem('portfolio-loaded', 'true');
                 }, 4000);
             }
