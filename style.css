@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. ПЕРЕМЕННЫЕ И БАЗОВЫЕ СТИЛИ (ОБНОВЛЕНО)
+   1. ПЕРЕМЕННЫЕ И БАЗОВЫЕ СТИЛИ
    ========================================================================== */
 :root {
     --bg-color: #0d1117; 
@@ -21,18 +21,11 @@
 
 body {
     background-color: #000000;
-    /* Твое изображение из папки images */
-    background-image: url('images/903c06ca05b95683c7646bf18a2914e5.jpg');
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     color: var(--text-main);
     font-family: var(--font);
     overflow-x: hidden;
-    
-    /* ВАЖНО: Увеличили отступ сверху, чтобы контент не прятался под шапку */
-    padding-top: 80px; 
+    /* Увеличенный отступ под новую крупную шапку */
+    padding-top: 90px; 
 }
 
 .container {
@@ -41,19 +34,30 @@ body {
     padding: 0 20px;
 }
 
+/* Стили для элементов, которые скрыты во время первой загрузки */
+.main-content-loaded {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease-in-out, visibility 0.6s;
+}
+
+/* Этот класс добавляется скриптом после окончания лоадера */
+.main-content-loaded.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
 /* ==========================================================================
-   ГИТХАБ-ШАПКА (ОБНОВЛЕНО - ИСПРАВЛЕН Z-INDEX)
+   УВЕЛИЧЕННАЯ ГИТХАБ-ШАПКА (HEADER STYLE)
    ========================================================================== */
 .gh-header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 48px; /* Четкая высота панели */
-    background-color: #0d1117 !important; /* Принудительный цвет GitHub, чтобы фон не просвечивал */
+    height: 56px; /* Шапка стала больше и заметнее */
+    background-color: #0d1117 !important; 
     border-bottom: 1px solid #21262d;
-    
-    /* ВАЖНО: z-index 99999 гарантирует, что шапка будет поверх ВСЕХ элементов и фонов */
     z-index: 99999; 
 }
 
@@ -67,20 +71,19 @@ body {
 .gh-nav {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px; /* Чуть увеличили расстояние между вкладками */
     height: 100%;
 }
 
-/* Элементы меню */
 .gh-nav-item {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 0 12px;
+    gap: 10px;
+    padding: 0 16px; /* Больше кликабельная зона */
     height: 100%;
     color: var(--text-main);
     text-decoration: none;
-    font-size: 14px;
+    font-size: 15px; /* Шрифт стал крупнее и читабельнее */
     font-weight: 400;
     position: relative;
     cursor: pointer;
@@ -88,19 +91,16 @@ body {
     transition: background-color 0.2s ease;
 }
 
-/* Элемент-текст (Бренд) */
 .gh-nav-item.brand {
     cursor: default;
     font-weight: 600;
 }
 
-/* Эффект наведения */
 .gh-nav-item:not(.brand):hover {
     background-color: rgba(177, 186, 196, 0.12);
     border-radius: 6px;
 }
 
-/* Активный пункт с оранжевой полоской */
 .gh-nav-item.active {
     font-weight: 600;
 }
@@ -111,7 +111,7 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 2px;
+    height: 3px; /* Оранжевая полоса стала чуть толще под стать шапке */
     background-color: var(--gh-active-orange);
 }
 
@@ -124,7 +124,7 @@ body {
 }
 
 /* ==========================================================================
-   2. МИНИМАЛИСТИЧНЫЙ ВОЛНОВОЙ ЛОАДЕР
+   2. МИНИМАЛИСТИЧНЫЙ ВОЛНОВОЙ ЛОАДЕР (БЕЗ ИЗМЕНЕНИЙ)
    ========================================================================== */
 #loader {
     position: fixed;
@@ -136,30 +136,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 999999; /* Поверх увеличенной шапки */
     transition: opacity 0.5s ease, visibility 0.5s;
 }
 
-.loader-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
-
-.wave-text {
-    display: flex;
-    font-size: 2.2rem;
-    font-weight: 300;
-    letter-spacing: 4px;
-    color: #ffffff;
-}
-
-.wave-text span {
-    display: inline-block;
-    animation: textWave 1.4s infinite ease-in-out;
-}
-
+.loader-content { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+.wave-text { display: flex; font-size: 2.2rem; font-weight: 300; letter-spacing: 4px; color: #ffffff; }
+.wave-text span { display: inline-block; animation: textWave 1.4s infinite ease-in-out; }
 .wave-text span:nth-child(1) { animation-delay: 0.0s; }
 .wave-text span:nth-child(2) { animation-delay: 0.1s; }
 .wave-text span:nth-child(3) { animation-delay: 0.2s; }
@@ -169,75 +152,24 @@ body {
 .wave-text span:nth-child(7) { animation-delay: 0.6s; }
 .wave-text span:nth-child(8) { animation-delay: 0.7s; }
 
-.wave-dots {
-    display: flex;
-    gap: 8px;
-}
-
-.wave-dots .loader-pill {
-    display: inline-block;
-    width: 6px;
-    height: 18px;
-    background-color: var(--accent-color);
-    border-radius: 10px;
-    animation: pillWave 1.4s infinite ease-in-out;
-}
-
+.wave-dots { display: flex; gap: 8px; }
+.wave-dots .loader-pill { display: inline-block; width: 6px; height: 18px; background-color: var(--accent-color); border-radius: 10px; animation: pillWave 1.4s infinite ease-in-out; }
 .wave-dots .loader-pill:nth-child(1) { animation-delay: 0.8s; }
 .wave-dots .loader-pill:nth-child(2) { animation-delay: 0.9s; }
 .wave-dots .loader-pill:nth-child(3) { animation-delay: 1.0s; }
 
-@keyframes textWave {
-    0%, 100% { transform: translateY(0); opacity: 0.3; }
-    50% { transform: translateY(-8px); opacity: 1; }
-}
-
-@keyframes pillWave {
-    0%, 100% { transform: scaleY(1); opacity: 0.3; }
-    50% { transform: scaleY(1.4); opacity: 1; background-color: #ffffff; box-shadow: 0 0 15px var(--accent-color); }
-}
+@keyframes textWave { 0%, 100% { transform: translateY(0); opacity: 0.3; } 50% { transform: translateY(-8px); opacity: 1; } }
+@keyframes pillWave { 0%, 100% { transform: scaleY(1); opacity: 0.3; } 50% { transform: scaleY(1.4); opacity: 1; background-color: #ffffff; box-shadow: 0 0 15px var(--accent-color); } }
 
 /* ==========================================================================
-   3. ГЛАВНЫЙ БЛОК (HERO) И КИНЕТИЧЕСКАЯ ДЕТАЛЬ
+   3. ГЛАВНЫЙ БЛОК (HERO) И ДЕТАЛЬ
    ========================================================================== */
-.hero {
-    min-height: 75vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    padding-top: 20px;
-}
-
-.hero-info {
-    flex: 1;
-    max-width: 600px;
-}
-
-.hero-info h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    letter-spacing: -1px;
-    color: #ffffff;
-}
-
-.hero-info h1 span {
-    color: var(--accent-color);
-}
-
-.hero-info p {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-}
-
-.hero-visual {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+.hero { min-height: 75vh; display: flex; align-items: center; justify-content: space-between; gap: 40px; padding-top: 20px; }
+.hero-info { flex: 1; max-width: 600px; }
+.hero-info h1 { font-size: 3rem; font-weight: 700; margin-bottom: 15px; letter-spacing: -1px; color: #ffffff; }
+.hero-info h1 span { color: var(--accent-color); }
+.hero-info p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.6; }
+.hero-visual { flex: 1; display: flex; justify-content: center; align-items: center; }
 
 .floating-interactive {
     width: 220px;
@@ -249,108 +181,38 @@ body {
     box-shadow: 0 0 50px rgba(255, 255, 255, 0.05);
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease;
 }
+.floating-interactive:hover { transform: scale(1.08) rotate(15deg); background: linear-gradient(45deg, var(--accent-color), #ffffff); box-shadow: 0 0 50px rgba(88, 101, 242, 0.4); }
 
-.floating-interactive:hover {
-    transform: scale(1.08) rotate(15deg);
-    background: linear-gradient(45deg, var(--accent-color), #ffffff);
-    box-shadow: 0 0 50px rgba(88, 101, 242, 0.4);
-}
-
-@keyframes morph {
-    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-    50% { border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%; }
-    100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-}
-
+@keyframes morph { 0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 50% { border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%; } 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
 /* ==========================================================================
-   4. СОДЕРЖАНИЕ И КАРТОЧКИ ПРОЕКТОВ
+   4. СОДЕРЖАНИЕ И КАРТОЧКИ
    ========================================================================== */
-.navigation-tabs {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 25px 0;
-    margin: 40px 0;
-    backdrop-filter: blur(5px);
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 35px;
-}
-
-.nav-links a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    transition: color 0.3s ease;
-    position: relative;
-    padding-bottom: 5px;
-}
-
-.nav-links a::after {
-    content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--accent-color); transition: width 0.3s ease;
-}
-
+.navigation-tabs { border-top: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 25px 0; margin: 40px 0; backdrop-filter: blur(5px); }
+.nav-links { list-style: none; display: flex; gap: 35px; }
+.nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s ease; position: relative; padding-bottom: 5px; }
+.nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--accent-color); transition: width 0.3s ease; }
 .nav-links a:hover { color: var(--text-main); }
 .nav-links a:hover::after { width: 100%; }
 
 .section { padding: 60px 0; }
 .section-title { font-size: 1.8rem; margin-bottom: 35px; font-weight: 600; display: flex; align-items: center; gap: 12px; }
 .section-title::before { content: '//'; color: var(--accent-color); font-family: monospace; font-weight: 700; }
-
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
 
 .card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 14px;
-    padding: 30px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 30px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease, box-shadow 0.3s ease;
 }
-
-.card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(88, 101, 242, 0.4);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
-}
-
-.card tag {
-    display: inline-block; background: rgba(88, 101, 242, 0.15); color: #8c96ff; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px;
-}
-
+.card:hover { transform: translateY(-6px); border-color: rgba(88, 101, 242, 0.4); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7); }
+.card tag { display: inline-block; background: rgba(88, 101, 242, 0.15); color: #8c96ff; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
 .card h3 { font-size: 1.35rem; margin-bottom: 12px; color: #ffffff;}
 .card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
 
-/* ==========================================================================
-   5. СТИЛИ ДЛЯ СТРАНИЦЫ КОНТАКТОВ
-   ========================================================================== */
-.contact-box {
-    background-color: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 14px;
-    padding: 60px 40px;
-    text-align: center;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
+.contact-box { background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 60px 40px; text-align: center; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.empty-notice { color: var(--text-muted); font-size: 1.1rem; font-style: italic; }
 
-.empty-notice {
-    color: var(--text-muted);
-    font-size: 1.1rem;
-    font-style: italic;
-}
-
-/* ==========================================================================
-   6. МОБИЛЬНАЯ АДАПТАЦИЯ
-   ========================================================================== */
 @media (max-width: 768px) {
     .hero { flex-direction: column-reverse; text-align: center; min-height: auto; padding-top: 40px; gap: 30px; }
     .hero-info h1 { font-size: 2.3rem; }
