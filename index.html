@@ -87,7 +87,6 @@
     </main>
 
     <script>
-        // Логика удаления приветственного лоадера
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 const loader = document.getElementById('loader');
@@ -101,7 +100,6 @@
             }, 800);
         });
 
-        // Функция обновления системного времени для часов
         function updateClock() {
             const now = new Date();
             const hours = now.getHours().toString().padStart(2, "0");
