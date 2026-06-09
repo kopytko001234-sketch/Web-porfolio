@@ -1,308 +1,109 @@
-/* ==========================================================================
-   1. ПЕРЕМЕННЫЕ И БАЗОВЫЕ СТИЛИ (RESET & VARIABLES)
-   ========================================================================== */
-:root {
-    --bg-color: #000000;
-    /* Полупрозрачный стеклянный фон для карточек, чтобы косые линии фона красиво просвечивали */
-    --card-bg: rgba(22, 24, 32, 0.75); 
-    --card-border: rgba(255, 255, 255, 0.08);
-    --accent-color: #5865F2; /* Элегантный сине-фиолетовый акцент */
-    --text-main: #f3f4f6;
-    --text-muted: #9ca3af;
-    --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио | Modern Dark Minimalism</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    scroll-behavior: smooth; /* Плавный скролл по якорным ссылкам */
-}
+    <div id="loader">
+        <div class="wave">
+            <span>З</span>
+            <span>а</span>
+            <span>г</span>
+            <span>р</span>
+            <span>у</span>
+            <span>з</span>
+            <span>к</span>
+            <span>а</span>
+            <span class="loader-dot">.</span>
+            <span class="loader-dot">.</span>
+            <span class="loader-dot">.</span>
+        </div>
+    </div>
 
-body {
-    background-color: var(--bg-color);
-    /* Подключение твоего фонового рисунка из папки images */
-    background-image: url('images/903c06ca05b95683c7646bf18a2914e5.jpg');
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    
-    color: var(--text-main);
-    font-family: var(--font);
-    overflow-x: hidden;
-}
+    <div class="container">
+        
+        <section class="hero">
+            <div class="hero-info">
+                <h1>Привет, я <span>Разработчик</span></h1>
+                <p>Создаю лаконичные, быстрые и функциональные цифровые решения. Специализируюсь на автоматизации процессов, разработке Telegram-ботов и современных веб-интерфейсов в стиле минимализма.</p>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-interactive" title="Попробуй навести мышь!"></div>
+            </div>
+        </section>
 
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+        <nav class="navigation-tabs">
+            <ul class="nav-links">
+                <li><a href="#tg-bots">Telegram Боты</a></li>
+                <li><a href="#web-sites">Веб-Сайты</a></li>
+                <li><a href="#other-projects">Другие проекты</a></li>
+            </ul>
+        </nav>
 
-/* ==========================================================================
-   2. МИНИМАЛИСТИЧНЫЙ ЛОАДЕР (ЗАГРУЗКА)
-   ========================================================================== */
-#loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000000; /* Чистый черный экран во время загрузки */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.5s ease, visibility 0.5s;
-}
+        <section id="tg-bots" class="section">
+            <h2 class="section-title">Telegram Боты</h2>
+            <div class="grid">
+                <div class="card">
+                    <tag>Python / Aiogram</tag>
+                    <h3>Referral & Admin Bot</h3>
+                    <p>Многофункциональный бот с продвинутой системой реферальных ссылок, кастомной админ-панелью и автоматической рассылкой статистики.</p>
+                </div>
+                <div class="card">
+                    <tag>API / Node.js</tag>
+                    <h3>Crypto Tracker Bot</h3>
+                    <p>Бот для отслеживания курсов криптовалют в реальном времени с возможностью настройки персональных уведомлений о падении или росте цены.</p>
+                </div>
+            </div>
+        </section>
 
-.dots-container {
-    display: flex;
-    gap: 12px;
-}
+        <section id="web-sites" class="section">
+            <h2 class="section-title">Веб-Сайты</h2>
+            <div class="grid">
+                <div class="card">
+                    <tag>HTML5 / CSS3 / JS</tag>
+                    <h3>Modern Studio Portfolio</h3>
+                    <p>Минималистичный адаптивный сайт-визитка с темной темой, плавными анимациями появления контента и стеклянными эффектами.</p>
+                </div>
+                <div class="card">
+                    <tag>React / Tailwind</tag>
+                    <h3>Dashboard Interface</h3>
+                    <p>Панель управления внутренними процессами компании. Интегрированные графики, таблицы данных и кастомный UI-кит.</p>
+                </div>
+            </div>
+        </section>
 
-.dot {
-    width: 16px;
-    height: 16px;
-    background-color: var(--accent-color);
-    border-radius: 50%;
-    animation: bounce 1.4s infinite ease-in-out both;
-}
+        <section id="other-projects" class="section">
+            <h2 class="section-title">Другие проекты</h2>
+            <div class="grid">
+                <div class="card">
+                    <tag>C++ / CLI</tag>
+                    <h3>System Port Utility</h3>
+                    <p>Низкоуровневая консольная утилита для безопасного мониторинга и логирования передачи данных через системные порты.</p>
+                </div>
+                <div class="card">
+                    <tag>Python / Parsing</tag>
+                    <h3>Data Scraper Pro</h3>
+                    <p>Парсер веб-страниц с поддержкой обхода капчи, многопоточностью и автоматическим сохранением результатов в форматы Excel и JSON.</p>
+                </div>
+            </div>
+        </section>
 
-.dot:nth-child(1) { animation-delay: -0.32s; }
-.dot:nth-child(2) { animation-delay: -0.16s; }
+    </div>
 
-@keyframes bounce {
-    0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
-    40% { transform: scale(1); opacity: 1; }
-}
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const loaderDisplayTime = 4000; // Развертывание сайта через 4 секунды
 
-/* ==========================================================================
-   3. ГЛАВНЫЙ БЛОК (HERO SECTION)
-   ========================================================================== */
-.hero {
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    padding-top: 40px;
-}
-
-.hero-info {
-    flex: 1;
-    max-width: 600px;
-}
-
-.hero-info h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    letter-spacing: -1px;
-}
-
-.hero-info h1 span {
-    color: var(--accent-color);
-}
-
-.hero-info p {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-}
-
-/* Подвижная абстрактная деталь справа */
-.hero-visual {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.floating-interactive {
-    width: 220px;
-    height: 220px;
-    /* Градиент в цвет линий твоего нового фона */
-    background: linear-gradient(45deg, #ffffff, #222531); 
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    animation: morph 8s infinite ease-in-out, spin 15s infinite linear;
-    cursor: pointer;
-    box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.floating-interactive:hover {
-    transform: scale(1.08) rotate(15deg);
-    background: linear-gradient(45deg, var(--accent-color), #ffffff);
-    box-shadow: 0 0 50px rgba(88, 101, 242, 0.4);
-}
-
-@keyframes morph {
-    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-    50% { border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%; }
-    100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-}
-
-@keyframes spin {
-    100% { transform: rotate(360deg); }
-}
-
-/* ==========================================================================
-   4. СОДЕРЖАНИЕ (НАВИГАЦИОННЫЕ ВКЛАДКИ)
-   ========================================================================== */
-.navigation-tabs {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 25px 0;
-    margin: 40px 0;
-    backdrop-filter: blur(5px); /* Легкое размытие заднего фона под меню */
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 35px;
-    justify-content: flex-start;
-}
-
-.nav-links a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    transition: color 0.3s ease;
-    position: relative;
-    padding-bottom: 5px;
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--accent-color);
-    transition: width 0.3s ease;
-}
-
-.nav-links a:hover {
-    color: var(--text-main);
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-/* ==========================================================================
-   5. СЕКЦИИ ПРОЕКТОВ И КАРТОЧКИ
-   ========================================================================== */
-.section {
-    padding: 60px 0;
-}
-
-.section-title {
-    font-size: 1.8rem;
-    margin-bottom: 35px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    letter-spacing: -0.5px;
-}
-
-.section-title::before {
-    content: '//';
-    color: var(--accent-color);
-    font-family: monospace;
-    font-weight: 700;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-}
-
-.card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 14px;
-    padding: 30px;
-    backdrop-filter: blur(10px); /* Эффект матового стекла поверх картинки */
-    -webkit-backdrop-filter: blur(10px);
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                border-color 0.3s ease, 
-                box-shadow 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(88, 101, 242, 0.4);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
-}
-
-.card tag {
-    display: inline-block;
-    background: rgba(88, 101, 242, 0.15);
-    color: #8c96ff; /* Чуть более светлый тон для читаемости на темном */
-    padding: 5px 12px;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.card h3 {
-    font-size: 1.35rem;
-    margin-bottom: 12px;
-    font-weight: 600;
-}
-
-.card p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-/* ==========================================================================
-   6. АДАПТИВНОСТЬ ПОД МОБИЛЬНЫЕ УСТРОЙСТВА (MEDIA QUERIES)
-   ========================================================================== */
-@media (max-width: 768px) {
-    .hero {
-        flex-direction: column-reverse; /* Картинка на мобильных встает наверх */
-        text-align: center;
-        justify-content: center;
-        min-height: auto;
-        padding-top: 60px;
-        gap: 30px;
-    }
-
-    .hero-info h1 {
-        font-size: 2.3rem;
-    }
-
-    .nav-links {
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
-    }
-
-    .hero-visual {
-        margin-bottom: 10px;
-    }
-
-    .floating-interactive {
-        width: 170px;
-        height: 170px;
-    }
-
-    .section {
-        padding: 40px 0;
-    }
-}
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+            }, loaderDisplayTime);
+        });
+    </script>
+</body>
+</html>
