@@ -2,26 +2,25 @@
  * Alexander Dev Portfolio - Основные скрипты интерфейса
  */
 
-// ==========================================
-// 1. УПРАВЛЕНИЕ ПРЕЛОАДЕРОМ (LOADER)
-// Ждём полной загрузки всех ресурсов страницы (стилей, картинок)
-// ==========================================
-window.addEventListener('load', () => {
+document.addEventListener('DOMContentLoaded', () => {
+
+    // ==========================================
+    // 1. УПРАВЛЕНИЕ ПРЕЛОАДЕРОМ (LOADER)
+    // Перенесено в DOMContentLoaded для мгновенного скрытия после сборки DOM
+    // ==========================================
     const loader = document.getElementById('loader');
     if (loader) {
-        // Запускаем плавное исчезновение лоадера
-        loader.style.opacity = '0';
-        loader.style.visibility = 'hidden';
+        // Небольшая задержка в 300мс для красивого визуального эффекта
+        setTimeout(() => {
+            loader.style.opacity = '0';
+            loader.style.visibility = 'hidden';
+            
+            // Плавный показ основного контента сайта
+            document.querySelectorAll('.main-content-loaded').forEach(el => {
+                el.classList.add('visible');
+            });
+        }, 300);
     }
-    
-    // Плавный показ основного контента сайта
-    document.querySelectorAll('.main-content-loaded').forEach(el => {
-        el.classList.add('visible');
-    });
-});
-
-
-document.addEventListener('DOMContentLoaded', () => {
 
     // ==========================================
     // 2. АВТОМАТИЧЕСКАЯ ПОДСВЕТКА КНОПКИ В ШАПКАХ
@@ -30,15 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll(".gh-nav-links .gh-nav-item");
 
     navLinks.forEach(link => {
-        // Убираем активный класс у всех ссылок
         link.classList.remove("active"); 
-        
-        // Если имя файла совпадает с href (или мы на главной и href равен index.html)
         if (link.getAttribute("href") === currentUrl || (currentUrl === "" && link.getAttribute("href") === "index.html")) {
             link.classList.add("active");
         }
     });
-
 
     // ==========================================
     // 3. ДИНАМИЧЕСКИЕ СТЕКЛЯННЫЕ ЧАСЫ
@@ -55,11 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
             secondsElement.textContent = String(now.getSeconds()).padStart(2, "0");
         }
     }
-    
-    // Инициализация и ежесекундный запуск часов
     updateClock();
     setInterval(updateClock, 1000);
-
 
     // ==========================================
     // 4. ИНТЕРАКТИВНАЯ КАРУСЕЛЬ КАРТОЧЕК (DECK)
@@ -69,29 +61,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cards.length > 0) {
         cards.forEach(card => {
             card.addEventListener('click', (event) => {
-                // Предотвращаем всплытие, чтобы клик по карте не закрывал её саму через обработчик документа
                 event.stopPropagation(); 
-
                 if (card.classList.contains('active')) {
                     card.classList.remove('active');
                 } else {
-                    // Снимаем класс active со всех карт и вешаем на выбранную
                     cards.forEach(c => c.classList.remove('active'));
                     card.classList.add('active');
                 }
             });
         });
 
-        // Клик в любом другом месте экрана возвращает активную карту обратно в веер
         document.addEventListener('click', () => {
             cards.forEach(card => card.classList.remove('active'));
         });
     }
-    
-// ==========================================================================
-// 5. СИСТЕМА ПОДДЕРЖКИ (ВТБ / СБП)
-// ==========================================================================
+});
 
+// ==========================================================================
+// 5. СИСТЕМА ПОДДЕРЖКИ (ВТБ / СБП) — Функции вынесены в глобальную область
+// ==========================================================================
 function openDonateModal() {
     const modal = document.getElementById('donateModal');
     if (modal) {
@@ -110,7 +98,6 @@ function closeDonateModal() {
     }
 }
 
-// Перехватываем клик по темной области через безопасный слушатель
 window.addEventListener('click', function(event) {
     const modal = document.getElementById('donateModal');
     if (modal && event.target === modal) {
