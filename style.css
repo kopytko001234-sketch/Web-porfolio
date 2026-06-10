@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. ПЕРЕМЕННЫЕ И УЛЬТРА-ТЕМНЫЙ ГЛУБОКИЙ ФОН
+   1. ПЕРЕМЕННЫЕ И ТЕМНЫЙ ФОН
    ========================================================================== */
 :root {
     --bg-color: #040508; 
@@ -47,7 +47,7 @@ body {
 }
 
 /* ==========================================================================
-   2. ЕДИНАЯ НАДЁЖНАЯ ШАПКА (ИНТЕГРИРОВАННЫЙ ДИЗАЙН)
+   2. ЕДИНАЯ ШАПКА
    ========================================================================== */
 .gh-header {
     position: relative; 
@@ -150,7 +150,7 @@ body {
 }
 
 /* ==========================================================================
-   3. ВСТРОЕННЫЕ ГОРИЗОНТАЛЬНЫЕ ЧАСЫ (БЕЗ FIXED ПОЗИЦИОНИРОВАНИЯ)
+   3. ВСТРОЕННЫЕ ГОРИЗОНТАЛЬНЫЕ ЧАСЫ
    ========================================================================== */
 .floating-clock-container {
     display: flex;
@@ -264,7 +264,7 @@ body {
 }
 
 /* ==========================================================================
-   5. ГЛАВНЫЙ БЛОК (HERO) И КВАНТОВОЕ НЕОНОВОЕ ЯДРО
+   5. ГЛАВНЫЙ БЛОК И НЕОНОВОЕ ЯДРО
    ========================================================================== */
 .hero { 
     min-height: 70vh; 
@@ -468,7 +468,7 @@ body {
 .btn-custom-photo { width: 22px; height: 22px; object-fit: contain; border-radius: 50%; pointer-events: none; }
 
 /* ==========================================================================
-   8. ОБЩИЕ СТИЛИ ДЛЯ ВСЕХ ВЕЕРНЫХ КАРУСЕЛЕЙ (ПОД ТВОЙ HTML)
+   8. ОБЩИЕ СТИЛИ ДЛЯ ВСЕХ ВЕЕРНЫХ КАРУСЕЛЕЙ
    ========================================================================== */
 .projects-section {
     padding: 60px 0;
@@ -499,14 +499,14 @@ body {
     height: 330px;  
     padding: 24px;  
     
-    /* ИЗМЕНЕНО: Сделали фон полупрозрачным (0.65 вместо плотного цвета) */
+    /* Полупрозрачный фон */
     background-color: rgba(13, 14, 18, 0.65); 
     
-    /* Твои границы теперь будут мягко подсвечивать прозрачную карту */
+    /* Границы теперь будут мягко подсвечивать прозрачную карту */
     border: 1px solid rgba(255, 255, 255, 0.04);
     border-radius: 16px; 
     
-    /* Эффект размытия заднего плана (чтобы контент под картами мягко размывался) */
+    /* Эффект размытия заднего плана */
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     
@@ -517,7 +517,6 @@ body {
                 border-color 0.4s ease, 
                 box-shadow 0.4s ease, 
                 background-color 0.4s ease;
-}
 }
 
 /* Стили для контента внутри карточки */
@@ -631,7 +630,6 @@ body {
         transform: translateY(-6px) scale(1.02) !important; 
     }
 }
-
 
 /* ==========================================================================
    9. СТИЛИ ДЛЯ СОДЕРЖАНИЯ (CONTENT NAV) С КАРТИНКАМИ В ПАПКЕ IMAGES
@@ -783,7 +781,7 @@ body {
     .slide-social-btn { width: auto !important; border-radius: 12px; padding-right: 10px; border-color: var(--btn-color); }
     .btn-sliding-text { opacity: 1; transform: translateX(0); }
 
-    /* Общий сброс для всех контейнеров каруселей на мобилках */
+    /* Общий сброс для всех контейнеров каруселей для мобильной версии */
     .carousel-container { 
         padding: 20px 0; 
     }
@@ -797,7 +795,7 @@ body {
         gap: 20px; 
     }
     
-    /* Сбрасываем абсолютное позиционирование для карточек на мобилках */
+    /* Сбрасываем абсолютное позиционирование для карточек для мобильной версии */
     .carousel-card { 
         position: relative !important; 
         left: auto !important;
@@ -811,14 +809,14 @@ body {
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
     }
     
-    /* Отключаем смещение при наведении на мобилках */
+    /* Отключаем смещение при наведении для мобильной версии */
     .deck-bots .c1:not(.active):hover, .deck-bots .c2:not(.active):hover, .deck-bots .c3:not(.active):hover, .deck-bots .c4:not(.active):hover, .deck-bots .c5:not(.active):hover,
     .deck-web .c1:not(.active):hover, .deck-web .c2:not(.active):hover, .deck-web .c3:not(.active):hover, .deck-web .c4:not(.active):hover, .deck-web .c5:not(.active):hover,
     .deck-other .c1:not(.active):hover, .deck-other .c2:not(.active):hover, .deck-other .c3:not(.active):hover, .deck-other .c4:not(.active):hover, .deck-other .c5:not(.active):hover {
         transform: translateY(-4px) !important;
     }
     
-    /* Кликнутая карточка на мобилке просто слегка подсвечивается без диких масштабов */
+    /* Кликнутая карточка для мобильной версии просто слегка подсвечивается без диких масштабов */
     .carousel-card.active { 
         transform: translateY(-6px) scale(1.02) !important; 
     }
@@ -831,7 +829,7 @@ body {
    12. СТИЛИ ДЛЯ МОДАЛЬНОГО ОКНА ВТБ/СБП
    ========================================================================== */
 .donate-modal {
-    display: none; /* По умолчанию скрыто */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -945,14 +943,17 @@ body {
     object-fit: contain;
 }
 
-/* Адаптив под мобилки */
+/* Адаптив для мобильной версии */
 @media (max-width: 576px) {
     .modal-grid { grid-template-columns: 1fr; gap: 20px; }
     .donate-modal-content { padding: 30px 20px; }
-    .modal-qr-block { order: -1; margin-bottom: 10px; } /* QR-код станет сверху на мобилке */
+    .modal-qr-block { order: -1; margin-bottom: 10px; } /* QR-код станет сверху на мобильной версии */
 }
 
 @keyframes fadeInModal {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
+}
+.accent-slashes {
+    color: var(--accent-color, #5865f2); /* Цвета для // в названиях разделов и в донате */
 }
