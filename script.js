@@ -1,20 +1,18 @@
 /**
- * Alexander Dev Portfolio - Основные скрипты интерфейса
+ * Alexander Dev Portfolio
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
     // ==========================================
     // 1. УПРАВЛЕНИЕ ПРЕЛОАДЕРОМ (LOADER)
-    // Перенесено в DOMContentLoaded для мгновенного скрытия после сборки DOM
     // ==========================================
     const loader = document.getElementById('loader');
     if (loader) {
-        // Небольшая задержка в 300мс для красивого визуального эффекта
+        // Небольшая задержка в 300мс для визуала
         setTimeout(() => {
             loader.style.opacity = '0';
             loader.style.visibility = 'hidden';
-            
             // Плавный показ основного контента сайта
             document.querySelectorAll('.main-content-loaded').forEach(el => {
                 el.classList.add('visible');
@@ -54,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateClock, 1000);
 
     // ==========================================
-    // 4. ИНТЕРАКТИВНАЯ КАРУСЕЛЬ КАРТОЧЕК (DECK)
+    // 4. ИНТЕРАКТИВНАЯ КАРУСЕЛЬ КАРТОЧЕК
     // ==========================================
     const cards = document.querySelectorAll('.carousel-card');
 
@@ -78,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================================================
-// 5. СИСТЕМА ПОДДЕРЖКИ (ВТБ / СБП) — Функции вынесены в глобальную область
+// 5. СИСТЕМА ПОДДЕРЖКИ (ВТБ / СБП)
 // ==========================================================================
 function openDonateModal() {
     const modal = document.getElementById('donateModal');
