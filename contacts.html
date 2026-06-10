@@ -11,8 +11,6 @@
 </head>
 <body>
 
-
-
     <div id="loader">
         <div class="loader-content">
             <div class="wave-text">
@@ -25,8 +23,6 @@
             </div>
         </div>
     </div>
-
-
 
     <header class="gh-header main-content-loaded">
     <div class="gh-container">
@@ -113,44 +109,85 @@
         </div>
         <span class="btn-sliding-text">Открыть Steam</span>
     </a>
+         <a href="https://t.me/DaRk_NighTTM" target="_blank" class="slide-social-btn tg-btn">
+        <div class="btn-icon-wrapper">
+            <img src="images/telegram.png" alt="Telegram" class="btn-custom-photo">
+        </div>
+        <span class="btn-sliding-text">t.me/DaRk_NighTTM</span>
+    </a>
 </div>
             </div>
         </section>
     </main>
 
+<footer class="cyber-footer main-content-loaded">
+        <div class="footer-container">
+            
+            <div class="footer-left">
+                <div class="footer-logo">Alexander <span>Dev</span></div>
+                <p class="footer-legal">© 2026 Alexander K. Разработка оригинальных интерфейсов. Все права защищены.</p> <!-- -->
+                <div class="footer-status">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Все системы в порядке</span>
+                </div>
+            </div>
+            
+            <div class="footer-center">
+                <h4>Навигация</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html#tg-bots">Telegram боты</a></li>
+                    <li><a href="index.html#web-sites">Сайты</a></li>
+                    <li><a href="index.html#other-projects">Другие проекты</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-right">
+                <h4>Поддержка автора</h4>
+                <p class="donate-text">Спонсорство приветствуется! Ваша поддержка помогает развивать open-source проекты и писать чистый код.</p>
+                <button class="donate-btn" onclick="openDonateModal()">
+                    <span class="donate-icon">💵</span>
+                    <span>Поддержать автора</span>
+                </button>
+            </div>
+        </div>
+    </footer>
 
+    <div id="donateModal" class="donate-modal">
+        <div class="donate-modal-content">
+            <span class="close-modal" onclick="closeDonateModal()">&times;</span>
+            
+            <h3 class="modal-title"><span class="accent-slashes">//</span> Поддержка проекта</h3>
+            <p class="modal-subtitle">Перевод через СБП на банк <span>ВТБ</span></p>
+            
+            <div class="modal-grid">
+                <div class="modal-info-block">
+                    <div class="info-item">
+                        <label>Номер телефона (СБП)</label>
+                        <div class="copy-field">
+                            <span id="phoneNum">+7 (959) 118-88-65</span>
+                            <button onclick="copyText('phoneNum', this)">Копировать</button>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <label>Получатель</label>
+                        <div class="static-text">Александр К.</div>
+                    </div>
+                    <div class="info-item">
+                        <label>Банк зачисления</label>
+                        <div class="static-text">ВТБ (Важно выбрать именно его)</div>
+                    </div>
+                </div>
+                
+                <div class="modal-qr-block">
+                    <label>Сканируй для перевода</label>
+                    <div class="qr-wrapper">
+                        <img src="images/qr-vtb.png" alt="QR-код ВТБ СБП" class="qr-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <script>
-
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                const loader = document.getElementById('loader');
-                if (loader) {
-                    loader.style.opacity = '0';
-                    loader.style.visibility = 'hidden';
-                }
-                document.querySelectorAll('.main-content-loaded').forEach(el => {
-                    el.classList.add('visible');
-                });
-            }, 800);
-        });
-
-        function updateClock() {
-            const now = new Date();
-            const hours = now.getHours().toString().padStart(2, "0");
-            const minutes = now.getMinutes().toString().padStart(2, "0");
-            const seconds = now.getSeconds().toString().padStart(2, "0");
-
-            if(document.getElementById("hours")) {
-                document.getElementById("hours").textContent = hours;
-                document.getElementById("minutes").textContent = minutes;
-                document.getElementById("seconds").textContent = seconds;
-            }
-        }
-
-        updateClock();
-        setInterval(updateClock, 1000);
-
-    </script>
+<script src="script.js"></script>
 </body>
 </html>
