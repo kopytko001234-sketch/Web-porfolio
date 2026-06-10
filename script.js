@@ -89,36 +89,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
 // ==========================================================================
-// 5.  ДОНАТ - Открытие, закрытие модалки и копирование в один клик
-// ========================================================================== 
+// 5. СИСТЕМА ПОДДЕРЖКИ (ВТБ / СБП)
+// ==========================================================================
 
-// Функция открытия модального окна
 function openDonateModal() {
     const modal = document.getElementById('donateModal');
     if (modal) {
         modal.classList.add('active');
-        document.body.style.overflow = 'hidden'; /* Запрещаем скролл страницы под модалкой */
+        document.body.style.overflow = 'hidden';
+    } else {
+        console.error('Ошибка: Окно #donateModal не найдено в HTML!');
     }
 }
 
-// Функция закрытия модального окна
 function closeDonateModal() {
     const modal = document.getElementById('donateModal');
     if (modal) {
         modal.classList.remove('active');
-        document.body.style.overflow = ''; /* Возвращаем скролл */
+        document.body.style.overflow = '';
     }
 }
 
-// БЕЗОПАСНОЕ закрытие кликом на темную область вокруг окна (без перезаписи window.onclick)
+// Перехватываем клик по темной области через безопасный слушатель
 window.addEventListener('click', function(event) {
     const modal = document.getElementById('donateModal');
-    if (event.target === modal) {
+    if (modal && event.target === modal) {
         closeDonateModal();
     }
 });
 
-// Копирование номера телефона в буфер обмена
 function copyText(elementId, buttonElement) {
     const element = document.getElementById(elementId);
     if (!element || !buttonElement) return;
@@ -140,5 +139,3 @@ function copyText(elementId, buttonElement) {
         console.error('Не удалось скопировать: ', err);
     });
 }
-    
-});
