@@ -886,7 +886,7 @@ body {
 .info-item { margin-bottom: 20px; }
 .info-item label, .modal-qr-block label { display: block; font-size: 0.75rem; color: #6e7681; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
 
-.copy-field {
+ .copy-field {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -894,19 +894,27 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.05);
     padding: 10px 14px;
     border-radius: 10px;
+    gap: 15px; /* Минимальный отступ между номером и кнопкой */
 }
-.copy-field span { font-family: monospace; font-size: 1.05rem; color: #ffffff; }
+
+.copy-field span {
+    font-family: monospace;
+    font-size: 1.05rem;
+    color: #ffffff;
+    white-space: nowrap; /* Запрещает переносы номера телефона */
+}
+
 .copy-field button {
     background: rgba(88, 101, 242, 0.2);
     border: 1px solid rgba(88, 101, 242, 0.4);
     color: #ffffff;
-    padding: 4px 10px;
+    padding: 6px 12px;
     border-radius: 6px;
     font-size: 0.8rem;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
+    flex-shrink: 0; /* Кнопка не будет сжиматься */
 }
-.copy-field button:hover { background: rgba(88, 101, 242, 0.4); }
 
 .static-text {
     font-size: 1.05rem;
