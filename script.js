@@ -124,3 +124,60 @@ function copyText(elementId, buttonElement) {
         console.error('Не удалось скопировать: ', err);
     });
 }
+
+/* ==========================================================================
+   ЭФФЕКТ ЛЕТАЮЩИХ КОМЕТ
+   ========================================================================== */
+
+function createCometEffect() {
+    // Создаем контейнер для комет, если его еще нет на странице
+    let container = document.querySelector('.comet-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.className = 'comet-container';
+        document.body.appendChild(container);
+    }
+
+    function spawnComet() {
+        const comet = document.createElement('div');
+        comet.className = 'comet';
+
+        // Случайные координаты появления (в верхней или правой части экрана)
+        const startX = Math.random() * window.innerWidth + 200; 
+        const startTop = Math.random() * (window.innerHeight * 0.4) - 100; // Появление в верхней половине
+
+        comet.style.left = `${startX}px`;
+        comet.style.top = `${startTop}px`;
+
+        // Случайная скорость полета (от 2 до 4 секунд)
+        const duration = Math.random() * 2 + 2;
+        comet.style.animationDuration = `${duration}s`;
+
+        // Случайный размер/длина кометы (масштабирование)
+        const scale = Math.random() * 0.6 + 0.6;
+        comet.style.transform = `rotate(-45deg) scale(${scale})`;
+
+        container.appendChild(comet);
+
+        // Удаляем комету из DOM-дерева сразу после окончания анимации
+        setTimeout(() => {
+            comet.remove();
+        }, duration * 1000);
+    }
+
+    // Запускаем первую комету почти сразу
+    setTimeout(spawnComet, 1000);
+
+    // Интервал появления новых комет (каждые 3-5 секунд)
+    setInterval(() => {
+        // Ограничим максимальное количество одновременно летящих комет до 5, чтобы не нагружать систему
+        if (container.children.length < 5) {
+            spawnComet();
+        }
+    }, Math.random() * 2000 + 3000);
+}
+
+// Запускаем генератор комет после полной загрузки страницы
+window.addEventListener('DOMContentLoaded', () => {
+    createCometEffect();
+});
