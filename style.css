@@ -957,3 +957,111 @@ body {
 .accent-slashes {
     color: var(--accent-color, #5865f2); /* Цвета для // в названиях разделов и в донате */
 }
+.nav-avatar {
+    width: 24px;         /* Оптимальная ширина под размер шрифта */
+    height: 24px;        /* Такая же высота для идеального квадрата */
+    border-radius: 50%;  /* Делает фотографию полностью круглой */
+    object-fit: cover;   /* Пропорционально обрезает фото, если оно не квадратное */
+    border: 1.5px solid var(--accent-color, #0052ff); /* Твой акцентный неоновый ободок */
+    transition: transform 0.3s ease; /* Плавный эффект при наведении */
+}
+
+/* Эффект при наведении на элемент бренда */
+.gh-nav-item.brand:hover .nav-avatar {
+    transform: scale(1.3); /* Фото слегка увеличивается при наведении */
+}
+
+/* Красивый переливающийся градиентный текст */
+.shimmer-text {
+    /* Цветовая гамма: темно-синий/фиолетовый переходит в яркий неон и обратно */
+    background: linear-gradient(
+        90deg, 
+        #5865f2 0%, 
+        #0052ff 25%, 
+        #a855f7 50%, 
+        #0052ff 75%, 
+        #5865f2 100%
+    );
+    background-size: 200% auto; /* Растягиваем фон, чтобы было куда двигать */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    
+    font-weight: 600; /* Делаем текст чуть плотнее, чтобы градиент лучше читался */
+    
+    /* Запуск бесконечной плавной анимации (двигается за 3 секунды) */
+    animation: shimmerEffect 3s linear infinite;
+}
+
+/* Анимация смещения градиента (эффект бегущей волны/точек) */
+@keyframes shimmerEffect {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+/* Контейнер для комет, чтобы они не ломали скролл и были на фоне */
+.comet-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    pointer-events: none; /* Чтобы сквозь них можно было кликать на кнопки */
+    z-index: 0;           /* Уводим на задний план, под текст и карточки */
+    overflow: hidden;
+}
+
+/* Сама комета */
+.comet {
+    position: absolute;
+    /* Наклон под углом для полета по диагонали (справа-сверху налево-вниз) */
+    transform: rotate(-45deg); 
+    /* Хвост кометы: от твоего акцентного сине-фиолетового к прозрачному */
+    background: linear-gradient(90deg, rgba(88, 101, 242, 1) 0%, rgba(0, 82, 255, 0.4) 50%, rgba(0, 0, 0, 0) 100%);
+    height: 2px; /* Толщина хвоста */
+    border-radius: 50%;
+    filter: drop-shadow(0 0 6px #0052ff); /* Эффект неонового свечения */
+    opacity: 0;
+    animation: flyComet 3s linear forwards;
+}
+
+/* Яркая точка-голова кометы */
+.comet::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 4px;
+    background: #fff; /* Белое ядро кометы */
+    border-radius: 50%;
+    box-shadow: 0 0 8px #fff, 0 0 15px #5865f2;
+}
+
+/* Анимация полета по диагонали со смещением и растворением */
+@keyframes flyComet {
+    0% {
+        opacity: 0;
+        transform: rotate(-45deg) translateX(0);
+        width: 0px;
+    }
+    10% {
+        opacity: 0.8;
+        width: 80px; /* Длина хвоста в полете */
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(-45deg) translateX(-1000px); /* Дистанция полета */
+        width: 120px;
+    }
+}
